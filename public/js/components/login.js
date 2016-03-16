@@ -1,20 +1,12 @@
 'use strict'
-const React          = require('react');
-const ReactDOM       = require('react-dom');
-const $              = require('jquery');
+const React = require('react');
 
-const auth           = require('../auth.js');
-
-const ReactRouter    = require('react-router');
-const Router         = ReactRouter.Router;
-const Route          = ReactRouter.Route;
-const Link           = ReactRouter.Link;
-const browserHistory = ReactRouter.browserHistory;
+const auth = require('../helpers/auth');
 
 const Login = React.createClass({
 
   contextTypes: {
-    router: React.PropTypes.object.isRequired //react prototype??
+    router: React.PropTypes.object.isRequired
   },
 
   getInitialState() {
@@ -34,6 +26,7 @@ const Login = React.createClass({
         return this.setState({ error: true })
 
       const { location } = this.props
+      // this redirects to the login page
       if (location.state && location.state.nextPathname) {
         this.context.router.replace(location.state.nextPathname)
       } else {
@@ -45,8 +38,8 @@ const Login = React.createClass({
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label><input ref="email" placeholder="email" defaultValue="joe@example.com" /></label>
-        <label><input ref="pass" placeholder="password" /></label> (hint: password1)<br />
+        <label><input ref="email" placeholder="email" defaultValue="" /></label>
+        <label><input ref="pass" placeholder="password" /></label><br />
         <button type="submit">login</button>
         {this.state.error && (
           <p>Bad login information</p>
