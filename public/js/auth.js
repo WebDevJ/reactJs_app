@@ -1,5 +1,5 @@
-module.exports = { //exports file here rather than bottom of app.js page
-//helper functions
+module.exports = {
+
 login(email, password, cb) {
   cb = arguments[arguments.length - 1]
   if (localStorage.token) {
@@ -23,7 +23,7 @@ login(email, password, cb) {
 signup(email, password, cb) {
   cb = arguments[arguments.length - 1]
   signupRequest(email, password, (res)=> {
-    cb() //recursion funtions, goes deepr than three functions
+    cb()
   })
 },
 
@@ -41,8 +41,8 @@ loggedIn() {
   return !!localStorage.token
 },
 
-onChange() {} //why is this empty?
-} //only exporting this object, not the function below
+onChange() {}
+} 
 
 function signupRequest(email, password, cb){
 $.post('/users', {email: email, password: password})

@@ -18,7 +18,7 @@ const About          = require('./components/about.js');
 const App = React.createClass({
   getInitialState() {
     return {
-      loggedIn: auth.loggedIn() //being called from the Auth.js
+      loggedIn: auth.loggedIn()
     }
   },
 
@@ -28,8 +28,8 @@ const App = React.createClass({
     })
   },
 
-  componentWillMount() {//*
-    auth.onChange = this.updateAuth //looking for changes on the form
+  componentWillMount() {
+    auth.onChange = this.updateAuth
     auth.login()
   },
 
@@ -39,7 +39,7 @@ const App = React.createClass({
         <ul>
           <li>
             {this.state.loggedIn ? (
-              <Link to="/logout">Log out</Link> //works like href in HTML
+              <Link to="/logout">Log out</Link>
             ) : (
               <Link to="/login">Sign in</Link>
             )}
@@ -53,7 +53,7 @@ const App = React.createClass({
   }
 })
 
-function requireAuth(nextState, replace) { //*
+function requireAuth(nextState, replace) {
   if (!auth.loggedIn()) {
       replace({
         pathname: '/login',
