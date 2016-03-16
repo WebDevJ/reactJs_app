@@ -8,7 +8,7 @@ We are going to create a SPA using Postgres (pg-promise) & Express to build an A
 
 * The event was poorly planed and you would of never went if you knew that ahead of time.
 
-* You really **love** what **NYC** has to offer but just can't seem to find that right event or even were to start looking. MeetUp.com can be **overwhelmed** with all those choices. It would be great if there was something that did all that guess work for you.
+* You really **love** what **NYC** has to offer but just can't seem to find that right event or even were to start looking. MeetUp.com can be **overwhelming** with all those choices. It would be great if there was something that did all that guess work for you.
 
 * Most of all, you didn't have any one to go **with !** Would it not be great if you and your friends could remotely agree to go to an event? Or **Share a Great MeetUp** with the Community that no one has heard of.    **DON'T Worry We Got You!**
 ## My_NYC_Community_Events.APP
@@ -16,7 +16,7 @@ Here at DiamondDogs inc. We believe that there should be an app that takes care 
 
 **DiamondDogs inc** would like to build this app with the vision of keeping in contact with all of our **Bowie** classmates via fun, active, engaging, NYC events via meetup.com's api. We will take out the guess work and at the same time build a Community of events we can enjoy while keeping up with each other after the immersive here at WDI.
 
-**Investors** With you sponsorship we can make this vison a real, living, breathing, APP. **Thank You for you Time.** 
+**Investors** With you sponsorship we can make this vison a real, living, breathing, APP. **Thank You for you Time.**
 
 
 ---
