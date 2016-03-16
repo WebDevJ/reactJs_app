@@ -12,6 +12,16 @@ const Link            = ReactRouter.Link;
 const $               = require('jquery');
 
 // routes to helpers go here
-const auth       = require('./helpers/auth');
+const auth       = require('../helpers/auth');
+
+const HomePage = React.createClass({
+  render() {
+    return (
+      <div>
+        <div><p>Homepage</p></div>
+      </div>
+    )
+  }
+})
 
 module.exports = HomePage;

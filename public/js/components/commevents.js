@@ -12,7 +12,8 @@ const Link            = ReactRouter.Link;
 const $               = require('jquery');
 
 // routes to helpers go here
-const auth       = require('./helpers/auth');
+const auth     = require('../helpers/auth');
+const Nav      = require('./nav');
 
 
 const CommEvents = React.createClass({
@@ -21,9 +22,20 @@ const CommEvents = React.createClass({
 
     return (
       <div>
-        <h1>Dashboard</h1>
-        <p>You made it!</p>
-        <p>{token}</p>
+        <div>
+          <h1>Dashboard</h1>
+          <p>You made it!</p>
+          <p>{token}</p>
+        </div>
+
+        <div><Nav /></div>
+
+        <div><p>Homepage</p></div>
+
+        <div><Events /></div>
+
+        <div><Footer /></div>
+
       </div>
     )
   }

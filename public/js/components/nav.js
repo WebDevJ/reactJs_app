@@ -12,6 +12,14 @@ const Link            = ReactRouter.Link;
 const $               = require('jquery');
 
 // routes to helpers go here
-const auth       = require('./helpers/auth');
+const auth       = require('../helpers/auth');
+
+const Nav = React.createClass({
+  render() {
+    return(
+      <div>This is the nav</div>
+    )
+  }
+})
 
 module.exports = Nav;

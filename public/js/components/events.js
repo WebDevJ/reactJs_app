@@ -12,6 +12,16 @@ const Link            = ReactRouter.Link;
 const $               = require('jquery');
 
 // routes to helpers go here
-const auth       = require('./helpers/auth');
+const auth       = require('../helpers/auth');
+
+const Events = React.createClass({
+  render() {
+    return (
+      <div>
+        <p>Test Event</p>
+      </div>
+    )
+  }
+})
 
 module.exports = Events;

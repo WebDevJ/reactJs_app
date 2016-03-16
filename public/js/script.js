@@ -53,6 +53,7 @@ const App = React.createClass({
           <li><Link to="/commevents">Community Events</Link> (authenticated)</li>
         </ul>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
+        <HomePage />
       </div>
     )
   }
