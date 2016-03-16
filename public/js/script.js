@@ -12,14 +12,13 @@ const Link            = ReactRouter.Link;
 const $               = require('jquery');
 
 // routes to helpers go here
-const auth = require('./helpers/auth');
-
+const auth       = require('./helpers/auth');
 // routes to components go here
-const Dashboard = require('./components/dashboard');
-const Login = require('./components/login');
-const About = require('./components/about');
-const Logout = require('./components/logout');
-
+const CommEvents = require('./components/commevents');
+const Login      = require('./components/login');
+const Logout     = require('./components/logout');
+const HomePage   = require('./components/homepage');
+const Footer     = require('./components/footer');
 
 const App = React.createClass({
   getInitialState() {
@@ -51,7 +50,7 @@ const App = React.createClass({
             )}
           </li>
           <li><Link to="/about">About</Link></li>
-          <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
+          <li><Link to="/commevents">Community Events</Link> (authenticated)</li>
         </ul>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
       </div>
@@ -73,8 +72,7 @@ ReactDOM.render((
     <Route path="/" component={App}>
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
-      <Route path="about" component={About} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+      <Route path="commevents" component={CommEvents} onEnter={requireAuth} />
     </Route>
   </Router>
 ), document.getElementById('container'))
