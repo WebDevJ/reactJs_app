@@ -14,7 +14,9 @@ We are going to create a SPA using Postgres (pg-promise) & Express to build an A
 ## My_NYC_Community_Events.APP
 Here at DiamondDogs inc. We believe that there should be an app that takes care of all of this for you. With this exclusive membership to a Community of tried and tested events, you can't go wrong. The best part is that you can see if your friends are going and if any one in the Community as already gone.
 
-**DiamondDogs inc** would like to build this app with the vision of keeping in contact with all of our **Bowie** classmates via fun, active, engaging, NYC events via
+**DiamondDogs inc** would like to build this app with the vision of keeping in contact with all of our **Bowie** classmates via fun, active, engaging, NYC events via meetup.com's api. We will take out the guess work and at the same time build a Community of events we can enjoy while keeping up with each other after the immersive here at WDI.
+
+**Investors** With you sponsorship we can make this vison a real, living, breathing, APP. **Thank You for you Time.** 
 
 
 ---
