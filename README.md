@@ -35,11 +35,27 @@ SPA created using React.js, Express &amp; PostgreSQL
 ![](./readMe_images/Project-3-Wireframes_4of4.jpg)
 
 ---
+### Routes
+| Action | Route | Function | DB function |
+|--------|---------------------------------------------------|---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| GET | / | Renders index.ejs, which is populated by REACT | N |
+| GET | /users | ? |  |
+| POST | /users | Adds a new user (to be used in conjunction with new user form) | Y |
+| GET | /users/me | Stores the user information for the session from expressJWT | N |
+| POST | /users/login | To login in as the user (to be used in conjunction with the login view) | Y |
+| GET | /events | JSON representation of all upcoming events for the community (pulled from the DB) | Y |
+| GET | /events/:id | JSON representation of single event | Y |
+| POST | /events | Adds a new event to the DB (events come from the search results from meetup | Y |
+| PUT | /events/:id | Adds user comment to the event/id listing | Y |
+| DELETE | /events/:id | Removes an event from the user's list | Y |
+| GET | /events/search/:term/:catid/:city/:state/:country | Render JSON results from the Meetup API, passing the search term, category id, city, state, and country | N - but will need to parse this data to render each event - maybe together? |
 
-#### ERD's:
+---
+
+### ERD's:
 ![](./readMe_images/Event_Community_ERD.png)
 ---
-#### WhiteBoard Screen Shots:
+### WhiteBoard Screen Shots:
 ![](./readMe_images/1of3-whiteBoard.jpg)
 ![](./readMe_images/2of3-whiteBoard.jpg)
 ![](./readMe_images/3of3-whiteBoard.jpg)
