@@ -35,7 +35,7 @@ function showCommEvents(req, res, next) {
 
 // show one event, with users attached to it
 function showOneEvent(req, res, next) {
-  db.any(`SELECT e.*, c.cat_name, array_agg(u.email) as users
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as users
     FROM events as e
       INNER JOIN categories as c
       ON c.cat_meetup_id = e.cat_meetup_id
@@ -43,8 +43,10 @@ function showOneEvent(req, res, next) {
       ON j.event_id = e.event_id
       LEFT JOIN users as u
       ON j.user_id = u.user_id
+      INNER JOIN users
+      ON e.added_by = users.user_id
     WHERE e.event_id = $/event_id/
-    GROUP BY e.event_id, c.cat_name;`, req.params)
+    GROUP BY e.event_id, c.cat_name, users.first, users.last;`, req.params)
   .then(function(data) {
     res.rows = data;
     next();
