@@ -70,6 +70,14 @@ function requireAuth(nextState, replace) {
   }
 }
 
+const NotFound = React.createClass({
+  render(){
+    return (
+      <h1>404 Not Found</h1>
+    )
+  }
+})
+
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
@@ -79,5 +87,7 @@ ReactDOM.render((
       <Route path="communityevents" component={CommEvents} onEnter={requireAuth} />
       <Route path="userevents" component={UserEvents} onEnter={requireAuth} />
     </Route>
+    {/* 404 */}
+    <Route path="*" component={NotFound} />
   </Router>
 ), document.getElementById('container'))

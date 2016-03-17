@@ -11,11 +11,8 @@ users.get('/', (req,res) => {
   res.json({data: 'success'})
 })
 
-users.get('/me', db.userInfo, (req, res) => {
-  // var user = jwt.decode(req.headers.authorization, secret);
-  // res.json({data: res.rows, agent: req.user})
-  res.send(res.rows)
-  console.log('user info', res.rows);
+users.get('/me', expressJWT({secret: secret}), db.userInfo, (req, res) => {
+  res.json(res.rows);
 })
 
 users.post('/', db.createUser, (req, res) => {
@@ -28,7 +25,6 @@ users.post('/login', db.loginUser, (req, res) => {
     agent: res.rows,
     token: token
   })
-
 })
 
 module.exports = users;

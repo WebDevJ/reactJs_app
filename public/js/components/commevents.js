@@ -26,15 +26,15 @@ const CommEvents = React.createClass({
     }
   },
   seeMe : function(e) {
-    e.preventDefault()
-
+    // e.preventDefault()
+    console.log('in seeMe')
     $.ajax({
       url: 'users/me',
       beforeSend: function( xhr ) {
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
       }
     }).done((data) => {
-      this.setState({me: data[0].email})
+      this.setState({me: data.email})
     })
   },
 

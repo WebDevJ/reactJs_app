@@ -9,8 +9,8 @@ const pgp = require('pg-promise')({
 const cn = process.env.DATABASE_URL;
 const db = pgp(cn);
 
-const bcrypt           = require('bcrypt');
-const salt             = bcrypt.genSaltSync(10);
+const bcrypt = require('bcrypt');
+const salt   = bcrypt.genSaltSync(10);
 
 function createSecure(email, password, callback) {
 
@@ -49,10 +49,7 @@ function createUser(req, res, next) {
             res.rows = data;
             next();
           }
-          // else{
-          //   res.rows = 'email and password do not match'
-          //   next();
-          // }
+
           res.status(401).json({data: 'email and password do not match'})
           next();
       })
@@ -61,10 +58,12 @@ function createUser(req, res, next) {
       })
   }
 
-function userInfo(req, res, next){
-  db.any(`SELECT * FROM users`)
+  function userInfo(req, res, next){
+    console.log('in user info')
+  db.any(`SELECT email FROM users WHERE user_id = $1`, [req.user.user_id])
     .then(function(data) {
-      res.rows = data;
+      res.rows = data[0];
+      console.log(res.rows);
       next();
     })
     .catch(function(error){
