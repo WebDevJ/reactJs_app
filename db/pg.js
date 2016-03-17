@@ -12,7 +12,7 @@ const db = pgp(cn);
 // render all events where the date is after today,
 // show users who have added it to their lists, and show the person it was added by
 function showCommEvents(req, res, next) {
-  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees, array_agg(u.user_id) as userIDs
     FROM events as e
       INNER JOIN categories as c
       ON c.cat_meetup_id = e.cat_meetup_id
@@ -35,7 +35,7 @@ function showCommEvents(req, res, next) {
 
 // show one event, with users attached to it
 function showOneEvent(req, res, next) {
-  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees, array_agg(u.user_id) as userIDs
     FROM events as e
       INNER JOIN categories as c
       ON c.cat_meetup_id = e.cat_meetup_id
@@ -59,7 +59,7 @@ function showOneEvent(req, res, next) {
 // show user list of events that have been added by the user or that they are attending
 function showUserEvents(req, res, next) {
   console.log(req);
-  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees, array_agg(u.user_id) as userIDs
     FROM events as e
       INNER JOIN categories as c
       ON c.cat_meetup_id = e.cat_meetup_id
@@ -82,22 +82,37 @@ function showUserEvents(req, res, next) {
 } // end of show user events
 
 // remove an event from the user list of events
-// function deleteUserEvent(req, res, next) {
-//   db.none(`DELETE FROM events_join
-//     WHERE user_id=$1 AND event_id=$2`,
-//     [req.params.user_id, req.body.event_id])
-//     .then(function(data) {
-//       res.rows = data;
-//       next();
-//     })
-//     .catch(function (error) {
-//       console.error(error);
-//     });
-// };
+function deleteUserEvent(req, res, next) {
+  db.none(`DELETE FROM events_join
+    WHERE user_id=$1 AND event_id=$2`,
+    [req.user.user_id, req.params.event_id])
+    .then(function(data) {
+      res.rows = data;
+      next();
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
 
 // add an event to the user list of events
+function addUserEvent(req, res, next) {
+  db.one(`INSERT INTO events_join (user_id, event_id)
+    VALUES ($1, $2) RETURNING *`,
+    [req.user.user_id, req.params.event_id])
+    .then(function(data) {
+      res.rows = data;
+      next();
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}; // end of addUserEvent
 
 // add an event to the community list of events
+function addCommEvent(req, res, next) {
+  // placeholder
+}
 
 
 
@@ -105,4 +120,6 @@ function showUserEvents(req, res, next) {
 module.exports.showCommEvents = showCommEvents;
 module.exports.showOneEvent = showOneEvent;
 module.exports.showUserEvents = showUserEvents;
-// module.exports.deleteUserEvent = deleteUserEvent;
+module.exports.deleteUserEvent = deleteUserEvent;
+module.exports.addUserEvent = addUserEvent;
+module.exports.addCommEvent = addCommEvent;
