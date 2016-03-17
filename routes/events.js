@@ -2,11 +2,15 @@
 
 const express = require('express');
 const events  = express.Router();
+const secret  = process.env.SECRET;
 const db      = require('../db/pg');
 const request = require('request');
+const bodyParser = require('body-parser');
+const expressJWT = require('express-jwt');
+const jwt        = require('jsonwebtoken');
 
 // get all events for the logged in user
-events.get('/users/:user_id', db.showUserEvents, (req, res) => {
+events.get('/me', expressJWT({secret: secret}), db.showUserEvents, (req, res) => {
   res.send(res.rows)
 })
 

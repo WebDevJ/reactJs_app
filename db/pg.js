@@ -58,6 +58,7 @@ function showOneEvent(req, res, next) {
 
 // show user list of events that have been added by the user or that they are attending
 function showUserEvents(req, res, next) {
+  console.log(req);
   db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees
     FROM events as e
       INNER JOIN categories as c
@@ -69,8 +70,8 @@ function showUserEvents(req, res, next) {
       INNER JOIN users
       ON e.added_by = users.user_id
     GROUP BY e.event_id, c.cat_name, users.first, users.last
-    HAVING e.added_by = $/user_id/ OR
-      (SELECT $/user_id/ = ANY (array_agg(u.user_id)::int[]));`, req.params)
+    HAVING e.added_by = $1 OR
+      (SELECT $1 = ANY (array_agg(u.user_id)::int[]));`, [req.user.user_id])
   .then(function(data) {
     res.rows = data;
     next();
@@ -81,6 +82,18 @@ function showUserEvents(req, res, next) {
 } // end of show user events
 
 // remove an event from the user list of events
+// function deleteUserEvent(req, res, next) {
+//   db.none(`DELETE FROM events_join
+//     WHERE user_id=$1 AND event_id=$2`,
+//     [req.params.user_id, req.body.event_id])
+//     .then(function(data) {
+//       res.rows = data;
+//       next();
+//     })
+//     .catch(function (error) {
+//       console.error(error);
+//     });
+// };
 
 // add an event to the user list of events
 
@@ -92,3 +105,4 @@ function showUserEvents(req, res, next) {
 module.exports.showCommEvents = showCommEvents;
 module.exports.showOneEvent = showOneEvent;
 module.exports.showUserEvents = showUserEvents;
+// module.exports.deleteUserEvent = deleteUserEvent;
