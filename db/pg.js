@@ -9,62 +9,63 @@ const pgp = require('pg-promise')({
 const cn = process.env.DATABASE_URL;
 const db = pgp(cn);
 
-const bcrypt           = require('bcrypt');
-const salt             = bcrypt.genSaltSync(10);
-const session          = require('express-session');
+// render all events where the date is after today,
+// show users who have added it to their lists, and show the person it was added by
+function showCommEvents(req, res, next) {
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees
+    FROM events as e
+      INNER JOIN categories as c
+      ON c.cat_meetup_id = e.cat_meetup_id
+      LEFT JOIN events_join as j
+      ON j.event_id = e.event_id
+      LEFT JOIN users as u
+      ON j.user_id = u.user_id
+      INNER JOIN users
+      ON e.added_by = users.user_id
+    WHERE e.event_time > now()
+    GROUP BY e.event_id, c.cat_name, users.first, users.last;`)
+  .then(function(data) {
+    res.rows = data;
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+} // end of show CommEvents
 
-function createSecure(email, password, callback) {
+// show one event, with users attached to it
+function showOneEvent(req, res, next) {
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as users
+    FROM events as e
+      INNER JOIN categories as c
+      ON c.cat_meetup_id = e.cat_meetup_id
+      LEFT JOIN events_join as j
+      ON j.event_id = e.event_id
+      LEFT JOIN users as u
+      ON j.user_id = u.user_id
+      INNER JOIN users
+      ON e.added_by = users.user_id
+    WHERE e.event_id = $/event_id/
+    GROUP BY e.event_id, c.cat_name, users.first, users.last;`, req.params)
+  .then(function(data) {
+    res.rows = data;
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+} // end of show one event
 
-  bcrypt.genSalt(function (err, salt) {
-    bcrypt.hash(password, salt, function (err, hash) {
-      callback(email, hash)
-    });
-  });
-};
+// show user list of events
 
-function createUser(req, res, next) {
-  createSecure(req.body.email, req.body.password, saveUser);
-  console.log(req.body)
-  function saveUser(email, hash) {
+// remove an event from the user list of events
 
-    db.none("INSERT INTO users (email, password_digest) VALUES ($1, $2);",
-      [email, hash])
-      .then(function(data) {
-        res.rows = data;
-        next();
-      })
-      .catch(function(error){
-        console.error(error);
-      })
-    }
-  }
+// add an event to the user list of events
 
-  function loginUser(req, res, next){
-    var email = req.body.email;
-    var password = req.body.password;
-
-    db.one('SELECT * FROM users WHERE email LIKE ($1)', [email])
-      .then(function(data) {
-        console.log('data');
-          if(bcrypt.compareSync(password, data.password_digest)){
-            res.rows = data;
-            next();
-          }
-          // else{
-          //   res.rows = 'email and password do not match'
-          //   next();
-          // }
-          res.status(401).json({data: 'email and password do not match'})
-          next();
-      })
-      .catch(function(error){
-        console.error('error finding users');
-      })
-  }
+// add an event to the community list of events
 
 
 
-module.exports.createUser = createUser;
-module.exports.createSecure = createSecure;
-
-module.exports.loginUser = loginUser;
+// exports
+module.exports.showCommEvents = showCommEvents;
+module.exports.showOneEvent = showOneEvent;

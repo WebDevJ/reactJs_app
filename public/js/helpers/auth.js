@@ -66,12 +66,11 @@ function loginRequest(email, pass, cb) {
 
  $.post('/users/login', loginCreds)
    .done((data) => {
-     console.log(data);
      cb({
        authenticated: true,
        token: data.token
-
      })
+     console.log(data.token);
    })
    .error((error) => {
      console.log(error);
