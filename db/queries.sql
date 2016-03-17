@@ -55,7 +55,7 @@ GROUP BY e.event_id, c.cat_name, users.first, users.last;
 
 
 -- show one event
-SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as users
+SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees
 FROM events as e
   INNER JOIN categories as c
   ON c.cat_meetup_id = e.cat_meetup_id
@@ -69,7 +69,7 @@ WHERE e.event_id = 1
 GROUP BY e.event_id, c.cat_name, users.first, users.last;
 
 -- show list of events added by a user
-SELECT e.*, c.cat_name, array_agg(u.email) as users
+SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees
 FROM events as e
   INNER JOIN categories as c
   ON c.cat_meetup_id = e.cat_meetup_id
@@ -77,5 +77,7 @@ FROM events as e
   ON j.event_id = e.event_id
   LEFT JOIN users as u
   ON j.user_id = u.user_id
-WHERE u.user_id = 1
-GROUP BY e.event_id, c.cat_name;
+  INNER JOIN users
+  ON e.added_by = users.user_id
+WHERE e.added_by = 1
+GROUP BY e.event_id, c.cat_name, users.first, users.last;

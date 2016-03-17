@@ -35,7 +35,7 @@ function showCommEvents(req, res, next) {
 
 // show one event, with users attached to it
 function showOneEvent(req, res, next) {
-  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as users
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees
     FROM events as e
       INNER JOIN categories as c
       ON c.cat_meetup_id = e.cat_meetup_id
@@ -57,6 +57,27 @@ function showOneEvent(req, res, next) {
 } // end of show one event
 
 // show user list of events
+function showUserEvents(req, res, next) {
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees
+  FROM events as e
+    INNER JOIN categories as c
+    ON c.cat_meetup_id = e.cat_meetup_id
+    LEFT JOIN events_join as j
+    ON j.event_id = e.event_id
+    LEFT JOIN users as u
+    ON j.user_id = u.user_id
+    INNER JOIN users
+    ON e.added_by = users.user_id
+  WHERE e.added_by = $/user_id/
+  GROUP BY e.event_id, c.cat_name, users.first, users.last;`, req.params)
+  .then(function(data) {
+    res.rows = data;
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+}
 
 // remove an event from the user list of events
 
@@ -69,3 +90,4 @@ function showOneEvent(req, res, next) {
 // exports
 module.exports.showCommEvents = showCommEvents;
 module.exports.showOneEvent = showOneEvent;
+module.exports.showUserEvents = showUserEvents;
