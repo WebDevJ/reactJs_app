@@ -1,3 +1,4 @@
+'use strict'
 const express    = require('express');
 const users      = express.Router();
 const secret     = process.env.SECRET;
@@ -10,9 +11,11 @@ users.get('/', (req,res) => {
   res.json({data: 'success'})
 })
 
-users.get('/me',(req, res) => {
+users.get('/me', db.userInfo, (req, res) => {
   // var user = jwt.decode(req.headers.authorization, secret);
-  res.json({data: res.rows, agent: req.user})
+  // res.json({data: res.rows, agent: req.user})
+  res.send(res.rows)
+  console.log('user info', res.rows);
 })
 
 users.post('/', db.createUser, (req, res) => {

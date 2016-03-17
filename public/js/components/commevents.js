@@ -34,8 +34,7 @@ const CommEvents = React.createClass({
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
       }
     }).done((data) => {
-      console.log('this is the data', data)
-      this.setState({me: data.agent.email})
+      this.setState({me: data[0].email})
     })
   },
 

@@ -61,8 +61,20 @@ function createUser(req, res, next) {
       })
   }
 
+function userInfo(req, res, next){
+  db.any(`SELECT * FROM users`)
+    .then(function(data) {
+      res.rows = data;
+      next();
+    })
+    .catch(function(error){
+      console.error(error);
+    })
+}
 
 
 module.exports.createUser = createUser;
 module.exports.createSecure = createSecure;
 module.exports.loginUser = loginUser;
+
+module.exports.userInfo = userInfo;
