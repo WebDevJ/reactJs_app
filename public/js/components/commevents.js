@@ -15,25 +15,49 @@ const $               = require('jquery');
 const auth     = require('../helpers/auth');
 const Nav      = require('./nav');
 const Events   = require('./events');
+const Search   = require('./search');
 const Footer   = require('./footer');
 
 
 const CommEvents = React.createClass({
+  getInitialState : function() {
+    return {
+      me: ''
+    }
+  },
+  seeMe : function(e) {
+    e.preventDefault()
+
+    $.ajax({
+      url: 'users/me',
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+      }
+    }).done((data) => {
+      console.log('this is the data', data)
+      this.setState({me: data.agent.email})
+    })
+  },
+
   render() {
     const token = auth.getToken()
 
     return (
       <div>
+      <div><Nav /></div>
         <div>
           <h1>Dashboard</h1>
           <p>You made it!</p>
           <p>{token}</p>
+          <p>{this.state.me}</p>
+        <button onClick={this.seeMe}> see your info</button>
         </div>
 
-        <div><Nav /></div>
 
 
         <div><Events /></div>
+
+        <div><Search /></div>
 
         <div><Footer /></div>
 

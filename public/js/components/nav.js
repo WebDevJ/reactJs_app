@@ -17,7 +17,13 @@ const auth       = require('../helpers/auth');
 const Nav = React.createClass({
   render() {
     return(
-      <div>This is the nav</div>
+      <div>This is the nav
+      <ul>
+      <li><Link to="/communityevents">Community Events</Link></li>
+      <li><Link to="/userevents">My Events</Link></li>
+      </ul>
+      </div>
+
     )
   }
 })

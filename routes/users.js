@@ -11,8 +11,8 @@ users.get('/', (req,res) => {
 })
 
 users.get('/me',(req, res) => {
-  var user = jwt.decode(req.headers.authorization, secret);
-  res.json({data: 'success', agent: user})
+  // var user = jwt.decode(req.headers.authorization, secret);
+  res.json({data: res.rows, agent: req.user})
 })
 
 users.post('/', db.createUser, (req, res) => {
@@ -20,7 +20,7 @@ users.post('/', db.createUser, (req, res) => {
 })
 
 users.post('/login', db.loginUser, (req, res) => {
-  var token = jwt.sign(res.rows, secret) 
+  var token = jwt.sign(res.rows, secret)
   res.json({
     agent: res.rows,
     token: token

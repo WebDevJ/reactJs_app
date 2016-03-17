@@ -18,7 +18,7 @@ const Events   = require('./events');
 const Footer   = require('./footer');
 
 
-const CommEvents = React.createClass({
+const UserEvents = React.createClass({
   render() {
     const token = auth.getToken()
 
@@ -39,4 +39,4 @@ const CommEvents = React.createClass({
   }
 })
 
-module.exports = CommEvents;
+module.exports = UserEvents;

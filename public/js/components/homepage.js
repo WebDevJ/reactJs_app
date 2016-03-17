@@ -18,6 +18,7 @@ const HomePage = React.createClass({
   render() {
     return (
       <div>
+      
         <div><p>Homepage</p></div>
       </div>
     )
