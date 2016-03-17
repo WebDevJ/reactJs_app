@@ -1,13 +1,9 @@
+'use strict';
+
 const express = require('express');
 const events  = express.Router();
 const db      = require('../db/pg');
 const request = require('request');
-
-// events.route('/users/:user_id')
-//   // get all events for the logged in user
-//   get(db.showUserEvents, (req, res) => {
-//     res.send(res.rows)
-//   })
 
 // get all events for the logged in user
 events.get('/users/:user_id', db.showUserEvents, (req, res) => {
