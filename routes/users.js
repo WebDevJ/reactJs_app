@@ -13,6 +13,7 @@ users.get('/', (req,res) => {
 
 users.get('/me', expressJWT({secret: secret}), db.userInfo, (req, res) => {
   res.json(res.rows);
+  //test
 })
 
 users.post('/', db.createUser, (req, res) => {
