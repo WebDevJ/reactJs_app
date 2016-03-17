@@ -32,7 +32,7 @@ CREATE TABLE events (
   state CHAR(2) DEFAULT 'NY',
   country text DEFAULT 'US',
   event_url text,
-  user_id integer REFERENCES users
+  added_by integer REFERENCES users(user_id)
 );
 
 
