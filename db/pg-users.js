@@ -54,20 +54,16 @@ function createUser(req, res, next) {
           next();
       })
       .catch(function(error){
-        console.error('error finding users');
       })
   }
 
   function userInfo(req, res, next){
-    console.log('in user info')
-  db.any(`SELECT email FROM users WHERE user_id = $1`, [req.user.user_id])
+    db.any(`SELECT email FROM users WHERE user_id = $1`, [req.user.user_id])
     .then(function(data) {
       res.rows = data[0];
-      console.log(res.rows);
       next();
     })
     .catch(function(error){
-      console.error(error);
     })
 }
 

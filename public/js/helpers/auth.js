@@ -22,6 +22,13 @@ module.exports = {
     })
   },
 
+  signup(email, pass, cb) {
+    cb = arguments[arguments.length - 1]
+    signupRequest(email, pass, (res) => {
+      cb()
+    })
+  },
+
   getToken() {
     return localStorage.token
   },

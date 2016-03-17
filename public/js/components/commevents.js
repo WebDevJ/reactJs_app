@@ -27,7 +27,6 @@ const CommEvents = React.createClass({
   },
   seeMe : function(e) {
     // e.preventDefault()
-    console.log('in seeMe')
     $.ajax({
       url: 'users/me',
       beforeSend: function( xhr ) {
@@ -51,8 +50,6 @@ const CommEvents = React.createClass({
           <p>{this.state.me}</p>
         <button onClick={this.seeMe}> see your info</button>
         </div>
-
-
 
         <div><Events /></div>
 
