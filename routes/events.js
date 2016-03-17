@@ -1,30 +1,39 @@
+'use strict';
+
 const express = require('express');
 const events  = express.Router();
+const secret  = process.env.SECRET;
 const db      = require('../db/pg');
 const request = require('request');
+const bodyParser = require('body-parser');
+const expressJWT = require('express-jwt');
+const jwt        = require('jsonwebtoken');
 
-events.route('/users/:user_id')
-  // get all events for the logged in user
-  .get((req, res) => {
-    res.send(res.rows)
-  })
+// get all events for the logged in user
+events.get('/me', expressJWT({secret: secret}), db.showUserEvents, (req, res) => {
+  res.send(res.rows)
+})
 
 events.route('/:event_id')
   // show one event
-  .get(db.showOneEvent, (req, res) => {
+  .get(expressJWT({secret: secret}), db.showOneEvent, (req, res) => {
     res.send(res.rows)
   })
   // delete event from user list
-  .delete((req, res) => {
+  .delete(expressJWT({secret: secret}), db.deleteUserEvent, (req, res) => {
+    res.send(res.rows)
+  })
+  // add event to user list
+  .post(expressJWT({secret: secret}), db.addUserEvent, (req, res) => {
     res.send(res.rows)
   })
 
 events.route('/')
   // get all events
-  .get(db.showCommEvents, (req, res) => {
+  .get(expressJWT({secret: secret}), db.showCommEvents, (req, res) => {
     res.send(res.rows)
   })
-  // add an event
+  // add an event to the community event list
   .post((req, res) => {
     res.send(res.rows)
   })
