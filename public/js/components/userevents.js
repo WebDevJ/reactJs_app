@@ -12,15 +12,31 @@ const Link            = ReactRouter.Link;
 const $               = require('jquery');
 
 // routes to helpers go here
-const auth       = require('../helpers/auth');
-const PastEvents = require('./pastevents');
+const auth     = require('../helpers/auth');
+const Nav      = require('./nav');
+const Events   = require('./events');
+const Footer   = require('./footer');
 
-const PastEvents = React.createClass({
+
+const CommEvents = React.createClass({
   render() {
+    const token = auth.getToken()
+
     return (
-      <div>These are Past Events</div>
+      <div>
+
+        <div><Nav /></div>
+
+
+        <div><Events /></div>
+
+        <div><PastEvents /></div>
+
+        <div><Footer /></div>
+
+      </div>
     )
   }
 })
 
-module.exports = PastEvents;
+module.exports = CommEvents;
