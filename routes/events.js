@@ -1,25 +1,40 @@
+'use strict';
+
 const express = require('express');
 const events  = express.Router();
+const secret  = process.env.SECRET;
 const db      = require('../db/pg');
 const request = require('request');
+const bodyParser = require('body-parser');
+const expressJWT = require('express-jwt');
+const jwt        = require('jsonwebtoken');
+
+// get all events for the logged in user
+events.get('/me', expressJWT({secret: secret}), db.showUserEvents, (req, res) => {
+  res.send(res.rows)
+})
+
+events.route('/:event_id')
+  // show one event
+  .get(expressJWT({secret: secret}), db.showOneEvent, (req, res) => {
+    res.send(res.rows)
+  })
+  // delete event from user list
+  .delete(expressJWT({secret: secret}), db.deleteUserEvent, (req, res) => {
+    res.send(res.rows)
+  })
+  // add event to user list
+  .post(expressJWT({secret: secret}), db.addUserEvent, (req, res) => {
+    res.send(res.rows)
+  })
 
 events.route('/')
-  .get((req, res) => {
+  // get all events
+  .get(expressJWT({secret: secret}), db.showCommEvents, (req, res) => {
     res.send(res.rows)
   })
+  // add an event to the community event list
   .post((req, res) => {
-  })
-
-events.route('/:events_id')
-  .get((req, res) => {
-    res.send(res.rows)
-  })
-
-  .put((req, res) => {
-    res.send(res.rows)
-  })
-
-  .delete((req, res) => {
     res.send(res.rows)
   })
 
