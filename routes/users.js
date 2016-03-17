@@ -1,7 +1,7 @@
 const express    = require('express');
 const users      = express.Router();
 const secret     = process.env.SECRET;
-const db         = require('../db/pg');
+const db         = require('../db/pg-users');
 const bodyParser = require('body-parser');
 const expressJWT = require('express-jwt');
 const jwt        = require('jsonwebtoken');
@@ -20,7 +20,7 @@ users.post('/', db.createUser, (req, res) => {
 })
 
 users.post('/login', db.loginUser, (req, res) => {
-  var token = jwt.sign(res.rows, secret) 
+  var token = jwt.sign(res.rows, secret)
   res.json({
     agent: res.rows,
     token: token

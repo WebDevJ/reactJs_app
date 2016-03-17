@@ -23,6 +23,7 @@ app.route('/')
   res.render('index.ejs');
 });
 
+// routes
 app.use('/users', require(path.join(__dirname, '/routes/users')));
 app.use('/events', require(path.join(__dirname, '/routes/events')));
 
