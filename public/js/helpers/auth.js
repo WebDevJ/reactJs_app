@@ -22,6 +22,13 @@ module.exports = {
     })
   },
 
+  signup(email, pass, cb) {
+    cb = arguments[arguments.length - 1]
+    signupRequest(email, pass, (res) => {
+      cb()
+    })
+  },
+
   getToken() {
     return localStorage.token
   },
@@ -66,11 +73,9 @@ function loginRequest(email, pass, cb) {
 
  $.post('/users/login', loginCreds)
    .done((data) => {
-     console.log(data);
      cb({
        authenticated: true,
        token: data.token
-
      })
    })
    .error((error) => {
