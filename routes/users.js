@@ -11,8 +11,8 @@ users.get('/', (req,res) => {
 })
 
 users.get('/me',(req, res) => {
-  var user = jwt.decode(req.headers.authorization, secret);
-  res.json({data: 'success', agent: user})
+  // var user = jwt.decode(req.headers.authorization, secret);
+  res.json({data: res.rows, agent: req.user})
 })
 
 users.post('/', db.createUser, (req, res) => {
