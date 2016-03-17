@@ -38,9 +38,7 @@ events.route('/')
     res.send(res.rows)
   })
 
-
-///events/search/:term/:catid/:city/:state/:country
-events.route('/search/')
+events.route('/search/') ///events/search/:term/:catid/:city/:state/:country
   .get((req, res) => {
     request({url:'', qs:{t: req.params.t}, json:true},
       function(err, apires, body) {

@@ -13,13 +13,14 @@ const $               = require('jquery');
 
 // routes to helpers go here
 const auth       = require('../helpers/auth');
+const Register   = require('./register');
 
 const HomePage = React.createClass({
   render() {
     return (
       <div>
-      
-        <div><p>Homepage</p></div>
+        <Register />
+        <Link to="/communityevents">Sign in</Link>
       </div>
     )
   }

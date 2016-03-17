@@ -26,16 +26,14 @@ const CommEvents = React.createClass({
     }
   },
   seeMe : function(e) {
-    e.preventDefault()
-
+    // e.preventDefault()
     $.ajax({
       url: 'users/me',
       beforeSend: function( xhr ) {
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
       }
     }).done((data) => {
-      console.log('this is the data', data)
-      this.setState({me: data.agent.email})
+      this.setState({me: data.email})
     })
   },
 
@@ -52,8 +50,6 @@ const CommEvents = React.createClass({
           <p>{this.state.me}</p>
         <button onClick={this.seeMe}> see your info</button>
         </div>
-
-
 
         <div><Events /></div>
 
