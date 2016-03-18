@@ -1,0 +1,30 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.content {
+  width: 65em;
+  margin: 0 auto;
+  padding-top: 2em;
+}
+
+nav li {
+  float: left;
+  list-style-type: none;
+  padding-left: 1em;
+}
+
+.events {
+  width: 45%;
+  float: left;
+  border: 1px solid #cccccc;
+  background-color: #f9f9f9;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+
+.searchresults {
+  width: 100%;
+  clear:both;
+  margin-top: 1em;
+}

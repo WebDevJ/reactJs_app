@@ -18,7 +18,7 @@ const Register   = require('./register');
 const HomePage = React.createClass({
   render() {
     return (
-      <div>
+      <div className="content">
         <Register />
         <Link to="/communityevents">Sign in</Link>
       </div>
