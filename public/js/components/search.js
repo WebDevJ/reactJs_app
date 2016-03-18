@@ -27,7 +27,6 @@ const Search = React.createClass({
     evt.preventDefault();
     // make an object of the search query for the API
     let searchTerms = {
-      // 'key': api_key,
       'text': this.refs.text.value,
       'category': this.refs.category.value,
       'city': 'New York',
@@ -42,6 +41,9 @@ const Search = React.createClass({
       .done(function(data) {
         console.log(data);
         // then set the state of results with the results of the search from the search route
+        this.state.results = data;
+        this.setState({results: this.state.results})
+        console.log(this.state.results);
 
       })
     //   .done( data => {
