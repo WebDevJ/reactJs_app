@@ -37,11 +37,6 @@ const CommEvents = React.createClass({
     })
   },
 
-
-  showCommEvents(key) {
-    <SingleEvent key={key} details={this.state.events[key]} />
-  },
-
   render() {
     const token = auth.getToken()
 

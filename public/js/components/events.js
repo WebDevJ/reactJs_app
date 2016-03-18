@@ -30,25 +30,24 @@ const Events = React.createClass({
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
       }
     }).done( (data) => {
-      console.log(data);
       data.forEach(el => {
         this.state.events[el.event_id] = el;
-        this.setState({events: this.state.events})
       })
+      this.setState({events: this.state.events})
     })
   },
 
   showCommEvents(key) {
-    <SingleEvent key={key} details={this.state.events[key]} />
+    return (
+      <SingleEvent key={key} details={this.state.events[key]} />
+    )
   },
 
   render() {
     return (
       <div>
-        <ul><li>{
-          Object.keys(this.state.events)
-          .map(this.showCommEvents)
-        }</li></ul>
+        <ul><li>{Object.keys(this.state.events)
+          .map(this.showCommEvents)}</li></ul>
       </div>
     )
   }
