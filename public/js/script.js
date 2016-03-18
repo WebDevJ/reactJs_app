@@ -24,7 +24,8 @@ const Footer         = require('./components/footer');
 const App = React.createClass({
   getInitialState() {
     return {
-      loggedIn: auth.loggedIn()
+      loggedIn: auth.loggedIn(),
+      events: {}
     }
   },
 
