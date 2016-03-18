@@ -22,9 +22,9 @@ module.exports = {
     })
   },
 
-  signup(email, pass, cb) {
+  signup(first, last, city, email, pass, cb) {
     cb = arguments[arguments.length - 1]
-    signupRequest(email, pass, (res) => {
+    signupRequest(first, last, city, email, pass, (res) => {
       cb()
     })
   },
@@ -47,8 +47,8 @@ module.exports = {
 }
 
 // new request to sign up
-function signupRequest (email, pass, cb) {
-  $.post('/users', {email: email, password: pass})
+function signupRequest (first, last, city, email, pass, cb) {
+  $.post('/users', {first: first, last: last, city: city, email: email, password: pass})
     .done( (data) => {
       cb({
         status: 201,
