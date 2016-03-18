@@ -23,7 +23,6 @@ const Events = React.createClass({
     }
   },
 
-
   componentDidMount() {
     $.ajax({
       url: '/events',
@@ -46,13 +45,13 @@ const Events = React.createClass({
   render() {
     return (
       <div>
-        <ul><li></li></ul>
+        <ul><li>{
+          Object.keys(this.state.events)
+          .map(this.showCommEvents)
+        }</li></ul>
       </div>
     )
   }
 })
-// {
-//   Object.keys(this.state.events)
-//   .map(this.showCommEvents)
-// }
+
 module.exports = Events;
