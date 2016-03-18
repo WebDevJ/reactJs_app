@@ -19,7 +19,7 @@ const SingleEvent = React.createClass({
   render() {
     return (
       <div>
-        <li></li>
+      {this.props.details.event_name}
       </div>
     )
   }

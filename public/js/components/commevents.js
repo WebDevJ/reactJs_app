@@ -37,6 +37,11 @@ const CommEvents = React.createClass({
     })
   },
 
+
+  showCommEvents(key) {
+    <SingleEvent key={key} details={this.state.events[key]} />
+  },
+
   render() {
     const token = auth.getToken()
 
@@ -48,7 +53,7 @@ const CommEvents = React.createClass({
           <h1>Community Events</h1>
         </div>
 
-          <div className="events"><Events /></div>
+          <div className="events"><Events showCommEvents={this.showCommEvents} /></div>
 
         <div className="searchresults"><Search /></div>
         <div><Footer /></div>
