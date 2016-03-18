@@ -15,6 +15,7 @@ const $               = require('jquery');
 const auth     = require('../helpers/auth');
 const Nav      = require('./nav');
 const Events   = require('./events');
+const PastEvents = require('./pastevents');
 const Footer   = require('./footer');
 
 

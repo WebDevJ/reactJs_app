@@ -21,6 +21,7 @@ const Nav = React.createClass({
       <ul>
       <li><Link to="/communityevents">Community Events</Link></li>
       <li><Link to="/userevents">My Events</Link></li>
+      <Link to="/logout">Log out</Link>
       </ul>
       </div>
 

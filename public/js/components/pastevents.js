@@ -13,7 +13,6 @@ const $               = require('jquery');
 
 // routes to helpers go here
 const auth       = require('../helpers/auth');
-const PastEvents = require('./pastevents');
 
 const PastEvents = React.createClass({
   render() {

@@ -19,7 +19,6 @@ const Logout         = require('./components/logout');
 const HomePage       = require('./components/homepage');
 const CommEvents     = require('./components/commevents');
 const UserEvents     = require('./components/userevents');
-const Register       = require('./components/register');
 const Footer         = require('./components/footer');
 
 const App = React.createClass({
@@ -43,19 +42,7 @@ const App = React.createClass({
   render() {
     return (
       <div>
-        <ul>
-          <li>
-            {this.state.loggedIn ? (
-              <Link to="/logout">Log out</Link>
-            ) : (
-              <Link to="/communityevents">Sign in</Link>
-            )}
-          </li>
-        {!this.state.loggedIn && <li><Link to="/signup">Sign Up</Link></li>}
-
-        </ul>
         {this.props.children || <HomePage />}
-
       </div>
     )
   }
@@ -70,14 +57,23 @@ function requireAuth(nextState, replace) {
   }
 }
 
+const NotFound = React.createClass({
+  render(){
+    return (
+      <h1>404 Not Found</h1>
+    )
+  }
+})
+
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
-      <Route path="signup" component={Register} />
       <Route path="communityevents" component={CommEvents} onEnter={requireAuth} />
       <Route path="userevents" component={UserEvents} onEnter={requireAuth} />
     </Route>
+    {/* 404 */}
+    <Route path="*" component={NotFound} />
   </Router>
 ), document.getElementById('container'))
