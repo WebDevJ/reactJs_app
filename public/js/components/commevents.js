@@ -20,22 +20,22 @@ const Footer   = require('./footer');
 
 
 const CommEvents = React.createClass({
-  getInitialState : function() {
+  getInitialState() {
     return {
       me: ''
     }
   },
-  seeMe : function(e) {
-    // e.preventDefault()
-    $.ajax({
-      url: 'users/me',
-      beforeSend: function( xhr ) {
-        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-      }
-    }).done((data) => {
-      this.setState({me: data.email})
-    })
-  },
+
+    componentDidMount(){
+      $.ajax({
+        url: 'users/me',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done((data) => {
+        this.setState({me: data.email})
+      })
+    },
 
   render() {
     const token = auth.getToken()
@@ -46,15 +46,10 @@ const CommEvents = React.createClass({
         <div>
           <h1>Dashboard</h1>
           <p>You made it!</p>
-          <p>{token}</p>
           <p>{this.state.me}</p>
-        <button onClick={this.seeMe}> see your info</button>
         </div>
-
         <div><Events /></div>
-
         <div><Search /></div>
-
         <div><Footer /></div>
 
       </div>

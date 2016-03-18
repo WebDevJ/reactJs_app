@@ -12,22 +12,22 @@ const db = pgp(cn);
 const bcrypt = require('bcrypt');
 const salt   = bcrypt.genSaltSync(10);
 
-function createSecure(email, password, callback) {
+function createSecure(first, last, city, email, password, callback) {
 
   bcrypt.genSalt(function (err, salt) {
     bcrypt.hash(password, salt, function (err, hash) {
-      callback(email, hash)
+      callback(first, last, city, email, hash)
     });
   });
 };
 
 function createUser(req, res, next) {
-  createSecure(req.body.email, req.body.password, saveUser);
+  createSecure(req.body.first, req.body.last, req.body.city, req.body.email, req.body.password, saveUser);
   console.log(req.body)
-  function saveUser(email, hash) {
+  function saveUser(first, last, city, email, hash) {
 
-    db.none("INSERT INTO users (email, password_digest) VALUES ($1, $2);",
-      [email, hash])
+    db.none("INSERT INTO users (first, last, city, email, password_digest) VALUES ($1, $2, $3, $4, $5);",
+      [req.body.first, req.body.last, req.body.city, email, hash])
       .then(function(data) {
         res.rows = data;
         next();
