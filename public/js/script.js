@@ -5,6 +5,7 @@ const ReactDOM       = require('react-dom');
 // react routing and links
 const ReactRouter    = require('react-router');
 const Router         = ReactRouter.Router;
+const Redirect       = ReactRouter.Redirect;
 const browserHistory = ReactRouter.browserHistory;
 const Route          = ReactRouter.Route;
 const Link           = ReactRouter.Link;
