@@ -19,7 +19,8 @@ const Search = React.createClass({
   render() {
     return (
       <div>
-        <p>Test Search</p>
+        <input refs="search" type="text" size="50" placeholder="search for events" />
+        <button refs="searchbtn">Submit</button>
         <SearchResults />
       </div>
     )
