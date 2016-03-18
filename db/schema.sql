@@ -15,6 +15,7 @@ CREATE TABLE users (
   city VARCHAR(255) DEFAULT 'New York',
   email VARCHAR(255),
   password_digest VARCHAR(255),
+  bio text,
   admin boolean DEFAULT FALSE
 );
 
