@@ -27,7 +27,6 @@ const Search = React.createClass({
     evt.preventDefault();
     // make an object of the search query for the API
     let searchTerms = {
-      // 'key': api_key,
       'text': this.refs.text.value,
       'category': this.refs.category.value,
       'city': 'New York',
