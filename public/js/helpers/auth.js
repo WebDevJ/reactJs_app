@@ -22,6 +22,13 @@ module.exports = {
     })
   },
 
+  signup(first, last, city, email, pass, cb) {
+    cb = arguments[arguments.length - 1]
+    signupRequest(first, last, city, email, pass, (res) => {
+      cb()
+    })
+  },
+
   getToken() {
     return localStorage.token
   },
@@ -40,8 +47,8 @@ module.exports = {
 }
 
 // new request to sign up
-function signupRequest (email, pass, cb) {
-  $.post('/users', {email: email, password: pass})
+function signupRequest (first, last, city, email, pass, cb) {
+  $.post('/users', {first: first, last: last, city: city, email: email, password: pass})
     .done( (data) => {
       cb({
         status: 201,
@@ -66,11 +73,9 @@ function loginRequest(email, pass, cb) {
 
  $.post('/users/login', loginCreds)
    .done((data) => {
-     console.log(data);
      cb({
        authenticated: true,
        token: data.token
-
      })
    })
    .error((error) => {

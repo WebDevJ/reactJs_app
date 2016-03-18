@@ -11,6 +11,7 @@ We are going to create a SPA using Postgres (pg-promise) & Express to build an A
 * You really **love** what **NYC** has to offer but just can't seem to find that right event or even were to start looking. MeetUp.com can be **overwhelming** with all those choices. It would be great if there was something that did all that guess work for you.
 
 * Most of all, you didn't have any one to go **with !** Would it not be great if you and your friends could remotely agree to go to an event? Or **Share a Great MeetUp** with the Community that no one has heard of.    **DON'T Worry We Got You!**
+
 ## My_NYC_Community_Events.APP
 Here at DiamondDogs inc. We believe that there should be an app that takes care of all of this for you. With this exclusive membership to a Community of tried and tested events, you can't go wrong. The best part is that you can see if your friends are going and if any one in the Community as already gone.
 
@@ -74,18 +75,18 @@ Here at DiamondDogs inc. We believe that there should be an app that takes care 
 
 ---
 ### Routes
-| Action | Route | Function | DB function |
-|--------|--------------------|---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| GET | / | Renders index.ejs, which is populated by REACT | N |
-| POST | /users | Adds a new user (to be used in conjunction with new user form) | Y |
-| GET | /users/me | Stores the user information for the session from expressJWT | N |
-| POST | /users/login | To login in as the user (to be used in conjunction with the login view) | Y |
-| GET | /events | JSON representation of all upcoming events for the community (pulled from the DB) | Y |
-| GET | /events/:id | JSON representation of single event | Y |
-| POST | /events | Adds a new event to the DB (events come from the search results from meetup) | Y |
-| PUT | /events/:id | Adds user comment to the event/id listing | Y |
-| DELETE | /events/:id | Removes an event from the user's list | Y |
-| GET | /events/search/?qs | Render JSON results from the Meetup API, passing the search term, category id, city, state, and country | N - but will need to parse this data to render each event - maybe together? |
+| Action | Route | Function | DB function | REACT Component |
+|--------|--------------------|---------------------------------------------------------------------------------------------------------|--------------------|-----------------|
+| GET | / | Renders index.ejs, which is populated by REACT | N |  |
+| POST | /users | Adds a new user (to be used in conjunction with new user form) | db.createUser |  |
+| POST | /users/login | To login in as the user (to be used in conjunction with the login view) | db.loginUser |  |
+| GET | /events | JSON representation of all upcoming events for the community (pulled from the DB) | db.showCommEvents | CommEvents |
+| GET | /events/me | JSON representation of all events for the logged in user | db.showUserEvents | UserEvents |
+| POST | /events | Adds a new event to the DB (events come from the search results from meetup) | db.addCommEvent | Actions |
+| GET | /events/:event_id | JSON representation of single event | db.showOneEvent | Events |
+| POST | /events/:event_id | Adds event to the user's listing of events | db.deleteUserEvent | Actions |
+| DELETE | /events/:event_id | Removes an event from the user's list | db.addUserEvent | Actions |
+| GET | /events/search/?qs | Render JSON results from the Meetup API, passing the search term, category id, city, state, and country | N |  |
 
 ---
 

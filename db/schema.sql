@@ -12,9 +12,10 @@ CREATE TABLE users (
   user_id SERIAL PRIMARY KEY UNIQUE,
   first VARCHAR(255),
   last VARCHAR(255),
-  city VARCHAR(255),
+  city VARCHAR(255) DEFAULT 'New York',
   email VARCHAR(255),
   password_digest VARCHAR(255),
+  bio text,
   admin boolean DEFAULT FALSE
 );
 
@@ -22,7 +23,7 @@ CREATE TABLE users (
 CREATE TABLE events (
   event_id SERIAL PRIMARY KEY UNIQUE,
   event_name text,
-  event_time numeric,
+  event_time timestamp,
   description text,
   cat_meetup_id integer REFERENCES categories(cat_meetup_id),
   address text,
@@ -32,7 +33,7 @@ CREATE TABLE events (
   state CHAR(2) DEFAULT 'NY',
   country text DEFAULT 'US',
   event_url text,
-  user_id integer REFERENCES users
+  added_by integer REFERENCES users(user_id)
 );
 
 
