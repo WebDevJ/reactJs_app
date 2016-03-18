@@ -12,13 +12,23 @@ const Link            = ReactRouter.Link;
 const $               = require('jquery');
 
 // routes to helpers go here
-const auth       = require('../helpers/auth');
+const auth            = require('../helpers/auth');
+const SingleEvent     = require('./singleevent');
 
 const Events = React.createClass({
+
+  componentDidMount(){
+    $.get('/events').done( (data) => {
+      data.forEach(el => {
+        this.state.
+      })
+    })
+  },
+
   render() {
     return (
       <div>
-        <p>Test Event</p>
+        <ul><SingleEvent /></ul>
       </div>
     )
   }
