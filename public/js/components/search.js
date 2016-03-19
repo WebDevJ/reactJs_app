@@ -4,12 +4,13 @@ const React           = require('react');
 // routes to components
 const auth          = require('../helpers/auth');
 const SearchResults = require('./search_results');
-const SingleResult  = require('./dummy/single_result.js')
+const SingleResult  = require('./single_result.js')
 
 const Search = React.createClass({
   getInitialState() {
     return {
-      results: []
+      results: [],
+      searchTerms: {}
     }
   },
   handleSubmit: function(evt){
@@ -28,14 +29,14 @@ const Search = React.createClass({
     // need to do a get to the search route with the search object as a query string
     $.get('/events/search', searchTerms)
       .done((data) => {
-        this.setState({results: data});
+        this.setState({results: data, searchTerms: searchTerms});
       })
   // clear the form
   this.refs.searchForm.reset();
   },
-  displayResults(currentState) {
-    return currentState.map(el=>
-        <SingleResult key={el.id} index={el.id} resultdata={el} onclick={this.testClick} />
+  displayResults(currentResults, currentSearch) {
+    return currentResults.map(el=>
+        <SingleResult key={el.id} index={el.id} resultdata={el} searchParam={currentSearch} onclick={this.testClick} />
     )
   },
 
@@ -62,7 +63,7 @@ const Search = React.createClass({
       </form>
         <section id="search-results">
           {/*<SearchResults />*/}
-          {this.displayResults(this.state.results)}
+          {this.displayResults(this.state.results, this.state.searchTerms)}
         </section>
       </div>
     )
