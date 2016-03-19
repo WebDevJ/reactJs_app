@@ -39,7 +39,7 @@ const Events = React.createClass({
 
   addMyEvent(newEvent) {
     $.ajax({
-      url:'/events/' + this.props.me[0],
+      url:'/events/' + this.state.events.event_id,
       method: 'POST',
       beforeSend: function( xhr ) {
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
@@ -51,15 +51,37 @@ const Events = React.createClass({
     })
   },
 
-  // deleteEvent() {
+  // addMyEvent(newEvent) {
   //   $.ajax({
-  //     url:
+  //     url:'/events/' + this.props.me[0],
+  //     method: 'POST',
+  //     beforeSend: function( xhr ) {
+  //       xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+  //     }
+  //   }).done( (data) => {
+  //     let eventID = data.event_id;
+  //     this.state.events[eventID] = newEvent;
+  //     this.setState({events: this.state.events})
   //   })
   // },
 
+  deleteEvent(removeEvent) {
+    $.ajax({
+      url:'/events/' + this.props.me[0],
+      method: 'DELETE',
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+      }
+    }).done( (data) => {
+      let eventID = data.event_id;
+      this.state.events[eventID] = removeEvent;
+      this.setState({events: this.state.events})
+    })
+  },
+
   showCommEvents(key) {
     return (
-      <SingleEvent key={key} index={key} details={this.state.events[key]} addMyEvent={this.addMyEvent} />
+      <SingleEvent key={key} index={key} details={this.state.events[key]} addMyEvent={this.addMyEvent} deleteEvent={this.deleteEvent} />
     )
   },
 
