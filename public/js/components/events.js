@@ -67,7 +67,7 @@ const Events = React.createClass({
 
   showCommEvents(key) {
     return (
-      <SingleEvent key={key} index={key} details={this.state.events[key]} addMyEvent={this.addMyEvent} />
+      <SingleEvent key={key} index={key} details={this.state.events[key]} addMyEvent={this.addMyEvent} deleteEvent={this.deleteEvent} />
     )
   },
 
