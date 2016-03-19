@@ -58,7 +58,7 @@ function createUser(req, res, next) {
   }
 
   function userInfo(req, res, next){
-    db.any(`SELECT email, first, last, city FROM users WHERE user_id = $1`, [req.user.user_id])
+    db.any(`SELECT user_id, email, first, last, city FROM users WHERE user_id = $1`, [req.user.user_id])
     .then(function(data) {
       res.rows = data[0];
       next();

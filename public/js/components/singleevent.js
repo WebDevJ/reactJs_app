@@ -15,13 +15,40 @@ const $               = require('jquery');
 const auth            = require('../helpers/auth');
 
 const SingleEvent = React.createClass({
+  // getInitialState() {
+  //
+  // },
+
+  handleClick(event) {
+    event.preventDefault();
+    this.props.addMyEvent(this.props.index)
+  },
+
+  handleDeleteClick(event) {
+    event.preventDefault();
+    this.props.deleteEvent(this.props.index)
+  },
 
   render() {
     return (
-      <div>
-        <h3>{this.props.details.event_name}</h3> 
+      <div className="events">
+        <h3>{this.props.details.event_name}</h3>
         <p>{this.props.details.event_time}</p>
+        <p>{this.props.details.address}</p>
+        <p>{this.props.details.city}</p>
+        <p><a href="{this.props.details.added_by}">{this.props.details.event_url}</a></p>
+        <p>{this.props.details.attendees}</p>
+        <p><button onClick={this.handleClick}>Add Event</button>  <button>Show More</button></p>
+        <p><DeleteButton /></p>
       </div>
+    )
+  }
+})
+
+const DeleteButton = React.createClass({
+  render() {
+    return (
+      <button onClick={this.handleDeleteClick}>Remove Event</button>
     )
   }
 })

@@ -33,7 +33,7 @@ const CommEvents = React.createClass({
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
       }
     }).done((data) => {
-      this.setState({me: data.first})
+      this.setState({me: [data.user_id, data.first]})
     })
   },
 
@@ -43,16 +43,16 @@ const CommEvents = React.createClass({
     return (
       <div className="dashboard">
         <header>
-          <div className=""><p>{this.state.me}</p></div>
+          <div className=""><p>{this.state.me[1]}</p></div>
           <div><Nav /></div>
         </header>
         <div className="content">
           <h1>Community Events</h1>
         </div>
 
-          <div className="events"><Events showCommEvents={this.showCommEvents} /></div>
+          <div><Events me={this.state.me}/></div>
 
-        <div className="searchresults"><Search /></div>
+        <div className="searchresults"></div>
         <div><Footer /></div>
 
       </div>
