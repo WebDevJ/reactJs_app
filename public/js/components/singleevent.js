@@ -14,19 +14,16 @@ const $               = require('jquery');
 // routes to helpers go here
 const auth            = require('../helpers/auth');
 
-const Nav = React.createClass({
-  render() {
-    return(
-      <nav>
-        <ul>
-          <li><Link to="/communityevents">Community Events</Link></li>
-          <li><Link to="/userevents">My Events</Link></li>
-          <li><Link to="/logout">Log out</Link></li>
-        </ul>
-      </nav>
+const SingleEvent = React.createClass({
 
+  render() {
+    return (
+      <div>
+        <h3>{this.props.details.event_name}</h3> 
+        <p>{this.props.details.event_time}</p>
+      </div>
     )
   }
 })
 
-module.exports = Nav;
+module.exports = SingleEvent;
