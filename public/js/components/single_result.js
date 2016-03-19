@@ -7,8 +7,12 @@ const SingleResult = React.createClass({
   },
   render() {
     return (
+      <div>
+        <h3>{this.props.resultdata.name}</h3>
+        <p>{this.props.resultdata.time}</p>
+        <p>{this.props.searchParam.category}</p>
+      </div>
 
-      <p onClick={this.handleClick}>{this.props.resultdata.name}</p>
     )
   }
 })
