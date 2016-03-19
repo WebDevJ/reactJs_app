@@ -1,9 +1,10 @@
 const React           = require('react');
 
 const SingleResult = React.createClass({
-  handleClick(event) {
+  handleAdd(event) {
     event.preventDefault();
-    this.props.onclick(this.props.index);
+    // console.log(this.props);
+    this.props.onAddSubmit(this.props.index);
   },
   render() {
     let address = '';
@@ -16,7 +17,7 @@ const SingleResult = React.createClass({
     }
 
     return (
-      <div>
+      <div className="events">
         <h3>{this.props.resultdata.name}</h3>
         <p>{this.props.resultdata.time}</p>
         <p>{this.props.searchParam.category}</p>
@@ -26,8 +27,13 @@ const SingleResult = React.createClass({
         <p>{this.props.searchParam.city}</p>
         <p>{this.props.searchParam.state}</p>
         <p>{this.props.searchParam.country}</p>
-        <p>{this.props.resultdata.event_url}</p>
-        <p></p>
+        <a href="this.props.resultdata.event_url">Check it out on Meetup!</a>
+        <form className="add-event" ref="addForm" onSubmit={this.handleAdd}>
+          <input type="hidden" value={this.props.resultdata.name}/>
+          <button refs="addbtn">Add Me!</button>
+        </form>
+
+
       </div>
 
     )
