@@ -52,7 +52,7 @@ const CommEvents = React.createClass({
 
           <div><Events me={this.state.me}/></div>
 
-        <div className="searchresults"><Search me={this.state.me}/></div>
+        <div className="searchresults"></div>
         <div><Footer /></div>
 
       </div>
