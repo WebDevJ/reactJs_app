@@ -1,17 +1,7 @@
 'use strict'
 const React           = require('react');
-const ReactDOM        = require('react-dom');
 
-// react routing and links
-const ReactRouter     = require('react-router');
-const Router          = ReactRouter.Router;
-const browserHistory  = ReactRouter.browserHistory;
-const Route           = ReactRouter.Route;
-const Link            = ReactRouter.Link;
-
-const $               = require('jquery');
-
-// routes to helpers go here
+// routes to components
 const auth          = require('../helpers/auth');
 const SearchResults = require('./search_results');
 const SingleResult  = require('./dummy/single_result.js')
@@ -40,8 +30,6 @@ const Search = React.createClass({
       .done((data) => {
         this.setState({results: data});
       })
-
-
   // clear the form
   this.refs.searchForm.reset();
   },
@@ -49,8 +37,6 @@ const Search = React.createClass({
     return currentState.map(el=>
         <SingleResult key={el.id} index={el.id} resultdata={el} onclick={this.testClick} />
     )
-
-
   },
 
   testClick(idx){
@@ -63,7 +49,7 @@ const Search = React.createClass({
       <form className="search" ref="searchForm" onSubmit={this.handleSubmit}>
         <input ref="text" type="text" size="50" placeholder="enter a topic to search for"/>
         <select ref="category">
-           <option>select a category</option>
+           <option value="">select a category</option>
            <option value="34">Tech</option>
            <option value="1">Art and Culture</option>
            <option value="4">Community and Environment</option>
