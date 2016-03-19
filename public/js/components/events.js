@@ -17,71 +17,10 @@ const auth           = require('../helpers/auth');
 const SingleEvent    = require('./singleevent');
 
 const Events = React.createClass({
-  getInitialState() {
-    return {
-      events: {}
-    }
-  },
-
-  componentDidMount() {
-    $.ajax({
-      url: '/events',
-      beforeSend: function( xhr ) {
-        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-      }
-    }).done( (data) => {
-      data.forEach(el => {
-        this.state.events[el.event_id] = el;
-      })
-      this.setState({events: this.state.events})
-    })
-  },
-
-  addMyEvent(newEvent) {
-    $.ajax({
-      url:'/events/' + this.state.events.event_id,
-      method: 'POST',
-      beforeSend: function( xhr ) {
-        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-      }
-    }).done( (data) => {
-      let eventID = data.event_id;
-      this.state.events[eventID] = newEvent;
-      this.setState({events: this.state.events})
-    })
-  },
-
-  // addMyEvent(newEvent) {
-  //   $.ajax({
-  //     url:'/events/' + this.props.me[0],
-  //     method: 'POST',
-  //     beforeSend: function( xhr ) {
-  //       xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-  //     }
-  //   }).done( (data) => {
-  //     let eventID = data.event_id;
-  //     this.state.events[eventID] = newEvent;
-  //     this.setState({events: this.state.events})
-  //   })
-  // },
-
-  deleteEvent(removeEvent) {
-    $.ajax({
-      url:'/events/' + this.props.me[0],
-      method: 'DELETE',
-      beforeSend: function( xhr ) {
-        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-      }
-    }).done( (data) => {
-      let eventID = data.event_id;
-      this.state.events[eventID] = removeEvent;
-      this.setState({events: this.state.events})
-    })
-  },
 
   showCommEvents(key) {
     return (
-      <SingleEvent key={key} index={key} details={this.state.events[key]} addMyEvent={this.addMyEvent} deleteEvent={this.deleteEvent} />
+      <SingleEvent key={key} index={key} details={this.props.events[key]} addMyEvent={this.addMyEvent} deleteEvent={this.deleteEvent} />
     )
   },
 
@@ -89,7 +28,7 @@ const Events = React.createClass({
     return (
       <div>
         <ul className="event-list">
-          <li>{Object.keys(this.state.events)
+          <li>{Object.keys(this.props.events)
           .map(this.showCommEvents)}</li>
           </ul>
       </div>

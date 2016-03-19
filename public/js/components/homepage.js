@@ -23,7 +23,7 @@ const HomePage = React.createClass({
             <h1>My NYC</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et   dolore  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo  consequat.</p>
             <Register />
-            <Link to="/communityevents">Sign in</Link>
+            <Link to="/dashboard">Sign in</Link>
             </div>
           </div>
     )
