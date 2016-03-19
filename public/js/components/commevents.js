@@ -21,54 +21,53 @@ const Search   = require('./search');
 
 const CommEvents = React.createClass({
 
+    addMyEvent(newEvent) {
+      $.ajax({
+        url:'/events/' + this.state.events.event_id,
+        method: 'POST',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done( (data) => {
+        let eventID = data.event_id;
+        this.state.events[eventID] = newEvent;
+        this.setState({events: this.state.events})
+      })
+    },
 
-  addMyEvent(newEvent) {
-    $.ajax({
-      url:'/events/' + this.state.events.event_id,
-      method: 'POST',
-      beforeSend: function( xhr ) {
-        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-      }
-    }).done( (data) => {
-      let eventID = data.event_id;
-      this.state.events[eventID] = newEvent;
-      this.setState({events: this.state.events})
-    })
-  },
+    addMyEvent(newEvent) {
+      $.ajax({
+        url:'/events/' + this.props.me[0],
+        method: 'POST',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done( (data) => {
+        let eventID = data.event_id;
+        this.state.events[eventID] = newEvent;
+        this.setState({events: this.state.events})
+      })
+    },
 
-  addMyEvent(newEvent) {
-    $.ajax({
-      url:'/events/' + this.props.me[0],
-      method: 'POST',
-      beforeSend: function( xhr ) {
-        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-      }
-    }).done( (data) => {
-      let eventID = data.event_id;
-      this.state.events[eventID] = newEvent;
-      this.setState({events: this.state.events})
-    })
-  },
+    deleteEvent(removeEvent) {
+      $.ajax({
+        url:'/events/' + this.props.me[0],
+        method: 'DELETE',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done( (data) => {
+        let eventID = data.event_id;
+        this.state.events[eventID] = removeEvent;
+        this.setState({events: this.state.events})
+      })
+    },
 
-  deleteEvent(removeEvent) {
-    $.ajax({
-      url:'/events/' + this.props.me[0],
-      method: 'DELETE',
-      beforeSend: function( xhr ) {
-        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-      }
-    }).done( (data) => {
-      let eventID = data.event_id;
-      this.state.events[eventID] = removeEvent;
-      this.setState({events: this.state.events})
-    })
-  },
-
-  showCommEvents(key) {
-    return (
-      <SingleEvent key={key} index={key} details={this.props.events[key]} addMyEvent={this.addMyEvent} deleteEvent={this.deleteEvent} />
-    )
-  },
+    showCommEvents(key) {
+      return (
+        <SingleEvent key={key} index={key} details={this.props.events[key]} addMyEvent={this.addMyEvent} deleteEvent={this.deleteEvent} />
+      )
+    },
 
   render() {
     const token = auth.getToken()
@@ -81,7 +80,7 @@ const CommEvents = React.createClass({
         </div>
 
         <div><Events events={this.props.events}/></div>
-        <div><Search events={this.props.events}/></div>
+        <div><Search /></div>
       </div>
     )
   }

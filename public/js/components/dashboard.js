@@ -15,7 +15,7 @@ const $               = require('jquery');
 const auth     = require('../helpers/auth');
 const Nav      = require('./nav');
 const CommEvents    = require('./commevents');
-// const UserEvents    = require('./userevents');
+const UserEvents    = require('./userevents');
 const Footer   = require('./footer');
 
 
@@ -49,7 +49,6 @@ const Dashboard = React.createClass({
       this.setState({events: this.state.events})
     })
   },
-
 
   render() {
     const token = auth.getToken()
