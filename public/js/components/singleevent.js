@@ -19,8 +19,8 @@ const SingleEvent = React.createClass({
   render() {
     return (
       <div>
-      <p>{this.props.details.event_name}</p> 
-      <p>{this.props.details.event_time}</p>
+        <h3>{this.props.details.event_name}</h3> 
+        <p>{this.props.details.event_time}</p>
       </div>
     )
   }

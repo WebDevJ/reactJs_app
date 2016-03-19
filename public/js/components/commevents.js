@@ -42,8 +42,10 @@ const CommEvents = React.createClass({
 
     return (
       <div className="dashboard">
-      <div><p>{this.state.me}</p></div>
-      <div><Nav /></div>
+        <header>
+          <div className=""><p>{this.state.me}</p></div>
+          <div><Nav /></div>
+        </header>
         <div className="content">
           <h1>Community Events</h1>
         </div>

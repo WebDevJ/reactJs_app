@@ -46,7 +46,7 @@ const Events = React.createClass({
   render() {
     return (
       <div>
-        <ul><li>{Object.keys(this.state.events)
+        <ul className="event-list"><li>{Object.keys(this.state.events)
           .map(this.showCommEvents)}</li></ul>
       </div>
     )
