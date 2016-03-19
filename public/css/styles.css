@@ -2,10 +2,34 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+h1, h2, h3 {
+  letter-spacing: .0125em;
+}
+
+a {
+  text-decoration: none;
+}
+
+#container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
 .content {
   width: 65em;
   margin: 0 auto;
   padding-top: 2em;
+}
+
+.hp-content {
+  width: 40em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+nav {
+  float: left;
 }
 
 nav li {
@@ -21,6 +45,11 @@ nav li {
   background-color: #f9f9f9;
   padding: 1em;
   margin-bottom: 2em;
+}
+
+.event-list {
+  list-style-type: none;
+  padding: 0;
 }
 
 .searchresults {
