@@ -51,11 +51,19 @@ const Events = React.createClass({
     })
   },
 
-  // deleteEvent() {
-  //   $.ajax({
-  //     url:
-  //   })
-  // },
+  deleteEvent(removeEvent) {
+    $.ajax({
+      url:'/events/' + this.props.me[0],
+      method: 'DELETE',
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+      }
+    }).done( (data) => {
+      let eventID = data.event_id;
+      this.state.events[eventID] = removeEvent;
+      this.setState({events: this.state.events})
+    })
+  },
 
   showCommEvents(key) {
     return (

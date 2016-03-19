@@ -20,6 +20,11 @@ const SingleEvent = React.createClass({
     this.props.addMyEvent(this.props.index)
   },
 
+  handleDeleteClick(event) {
+    event.preventDefault();
+    this.props.deleteEvent(this.props.index)
+  },
+
   render() {
     return (
       <div className="events">
@@ -28,8 +33,9 @@ const SingleEvent = React.createClass({
         <p>{this.props.details.address}</p>
         <p>{this.props.details.city}</p>
         <p><a href="{this.props.details.added_by}">{this.props.details.event_url}</a></p>
-        <p>{this.props.details.added_by}</p>
+        <p>{this.props.details.attendees}</p>
         <p><button onClick={this.handleClick}>Add Event</button>  <button>Show More</button></p>
+        <p><button onClick={this.handleDeleteClick}>Remove Event</button></p>
       </div>
     )
   }
