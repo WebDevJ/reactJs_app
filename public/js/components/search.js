@@ -40,8 +40,8 @@ const Search = React.createClass({
     )
   },
 
-  handleAddSubmit(idx){
-    console.log(idx)
+  handleAddSubmit(newEvent){
+    console.log(newEvent)
   },
 
   render() {
