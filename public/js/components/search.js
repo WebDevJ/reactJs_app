@@ -36,12 +36,12 @@ const Search = React.createClass({
   },
   displayResults(currentResults, currentSearch) {
     return currentResults.map(el=>
-        <SingleResult key={el.id} index={el.id} resultdata={el} searchParam={currentSearch} onclick={this.testClick} />
+        <SingleResult key={el.id} index={el.id} resultdata={el} searchParam={currentSearch} onAddSubmit={this.handleAddSubmit} />
     )
   },
 
-  testClick(idx){
-    console.log(idx)
+  handleAddSubmit(newEvent){
+    console.log(newEvent)
   },
 
   render() {
