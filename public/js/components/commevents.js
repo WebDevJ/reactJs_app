@@ -26,30 +26,33 @@ const CommEvents = React.createClass({
     }
   },
 
-    componentDidMount(){
-      $.ajax({
-        url: 'users/me',
-        beforeSend: function( xhr ) {
-          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-        }
-      }).done((data) => {
-        this.setState({me: data.email})
-      })
-    },
+  componentDidMount(){
+    $.ajax({
+      url: 'users/me',
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+      }
+    }).done((data) => {
+      this.setState({me: [data.user_id, data.first]})
+    })
+  },
 
   render() {
     const token = auth.getToken()
 
     return (
-      <div>
-      <div><Nav /></div>
-        <div>
-          <h1>Dashboard</h1>
-          <p>You made it!</p>
-          <p>{this.state.me}</p>
+      <div className="dashboard">
+        <header>
+          <div className=""><p>{this.state.me[1]}</p></div>
+          <div><Nav /></div>
+        </header>
+        <div className="content">
+          <h1>Community Events</h1>
         </div>
-        <div><Events /></div>
-        <div><Search /></div>
+
+          <div><Events me={this.state.me}/></div>
+
+        <div className="searchresults"></div>
         <div><Footer /></div>
 
       </div>

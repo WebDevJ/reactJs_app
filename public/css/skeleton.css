@@ -168,7 +168,7 @@ input[type="button"] {
   color: #6AA2B8;
   text-align: center;
   font-size: 11px;
-  font-weight: 600;
+  /*font-weight: 600;*/
   line-height: 38px;
   letter-spacing: .1rem;
   text-transform: uppercase;
@@ -264,7 +264,8 @@ label,
 legend {
   display: block;
   margin-bottom: .5rem;
-  font-weight: 600; }
+  /*font-weight: 600; */
+}
 fieldset {
   padding: 0;
   border-width: 0; }

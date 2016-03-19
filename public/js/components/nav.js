@@ -12,18 +12,18 @@ const Link            = ReactRouter.Link;
 const $               = require('jquery');
 
 // routes to helpers go here
-const auth       = require('../helpers/auth');
+const auth            = require('../helpers/auth');
 
 const Nav = React.createClass({
   render() {
     return(
-      <div>This is the nav
-      <ul>
-      <li><Link to="/communityevents">Community Events</Link></li>
-      <li><Link to="/userevents">My Events</Link></li>
-      <Link to="/logout">Log out</Link>
-      </ul>
-      </div>
+      <nav>
+        <ul>
+          <li><Link to="/communityevents">Community Events</Link></li>
+          <li><Link to="/userevents">My Events</Link></li>
+          <li><Link to="/logout">Log out</Link></li>
+        </ul>
+      </nav>
 
     )
   }
