@@ -22,8 +22,8 @@ const SingleResult = React.createClass({
   render() {
     // get the event location address detail - object in an object, some events don't have venues with addresses
     let address = '';
-    let lon = '';
-    let lat = '';
+    let lon = 0;
+    let lat = 0;
     let city = '';
     if (this.props.resultdata.venue) {
       address = this.props.resultdata.venue.address_1;
