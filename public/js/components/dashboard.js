@@ -52,11 +52,6 @@ const Dashboard = React.createClass({
 
   addCommEvent: function(newEvent) {
     // ajax post and set state go here
-    let event = newEvent;
-    console.log(this.props.me[0]);
-    newEvent.user_id = this.props.me[0];
-    console.log(newEvent);
-
     let addEvent = (data) => {
       let newID = data.event_id;
       // add new task to state
@@ -66,6 +61,7 @@ const Dashboard = React.createClass({
     $.ajax({
       url: '/events',
       method: 'POST',
+      data: newEvent,
       beforeSend: function( xhr ) {
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
       }

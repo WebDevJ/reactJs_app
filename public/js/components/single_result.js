@@ -14,7 +14,8 @@ const SingleResult = React.createClass({
       lat: this.refs.lat.value,
       city: this.refs.city.value,
       state: this.refs.state.value,
-      country: this.refs.country.value
+      country: this.refs.country.value,
+      event_url: this.refs.event_url.value
     };
     this.props.onAddSubmit(newEvent);
   },
@@ -56,6 +57,7 @@ const SingleResult = React.createClass({
           <input type="hidden" ref="city" value={this.props.searchParam.city}/>
           <input type="hidden" ref="state" value={this.props.searchParam.state}/>
           <input type="hidden" ref="country" value={this.props.searchParam.country}/>
+          <input type="hidden" ref="event_url" value={this.props.resultdata.event_url}/>
           <button ref="addbtn">Add Me!</button>
         </form>
       </div>

@@ -27,7 +27,6 @@ const CommEvents = React.createClass({
 
       },
 
-
     addMyEvent(newEvent) {
       $.ajax({
         url:'/events/' + this.state.events.event_id,
@@ -87,7 +86,7 @@ const CommEvents = React.createClass({
         </div>
 
         <div><Events events={this.props.events}/></div>
-        <div><Search addCommEvent={this.addCommEvent}/></div>
+        <div><Search addCommEvent={this.props.addCommEvent}/></div>
       </div>
     )
   }
