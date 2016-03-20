@@ -27,49 +27,6 @@ const CommEvents = React.createClass({
 
       },
 
-    addMyEvent(newEvent) {
-      $.ajax({
-        url:'/events/' + this.state.events.event_id,
-        method: 'POST',
-        beforeSend: function( xhr ) {
-          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-        }
-      }).done( (data) => {
-        let eventID = data.event_id;
-        this.state.events[eventID] = newEvent;
-        this.setState({events: this.state.events})
-      })
-    },
-
-
-    addMyEvent(newEvent) {
-      $.ajax({
-        url:'/events/' + this.state.events.event_id,
-        method: 'POST',
-        beforeSend: function( xhr ) {
-          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-        }
-      }).done( (data) => {
-        let eventID = data.event_id;
-        this.state.events[eventID] = newEvent;
-        this.setState({events: this.state.events})
-      })
-    },
-
-    //
-    // addMyEvent(newEvent) {
-    //   $.ajax({
-    //     url:'/events/' + this.props.me[0],
-    //     method: 'POST',
-    //     beforeSend: function( xhr ) {
-    //       xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-    //     }
-    //   }).done( (data) => {
-    //     let eventID = data.event_id;
-    //     this.state.events[eventID] = newEvent;
-    //     this.setState({events: this.state.events})
-    //   })
-    // },
 
     deleteEvent(removeEvent) {
       $.ajax({
@@ -85,11 +42,6 @@ const CommEvents = React.createClass({
       })
     },
 
-    showCommEvents(key) {
-      return (
-        <SingleEvent key={key} index={key} details={this.props.events[key]} addMyEvent={this.addMyEvent} deleteEvent={this.deleteEvent} />
-      )
-    },
 
   render() {
     const token = auth.getToken()
@@ -101,7 +53,7 @@ const CommEvents = React.createClass({
           <h1>Community Events</h1>
         </div>
 
-        <div><Events events={this.props.events}/></div>
+        <div><Events events={this.props.events} addMyEvent={this.props.addMyEvent}/></div>
         <div><Search addCommEvent={this.props.addCommEvent}/></div>
       </div>
     )

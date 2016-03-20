@@ -21,7 +21,7 @@ const SingleEvent = React.createClass({
 
   handleClick(event) {
     event.preventDefault();
-    this.props.addMyEvent(this.props.index)
+    this.props.handleAdd(this.props.index)
   },
 
   handleDeleteClick(event) {

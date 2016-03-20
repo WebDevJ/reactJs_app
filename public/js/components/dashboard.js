@@ -69,6 +69,33 @@ const Dashboard = React.createClass({
 
   },
 
+  addMyEvent(newEvent) {
+    console.log(newEvent);
+    $.ajax({
+      url:'/events/' + newEvent,
+      method: 'POST',
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+      }
+    }).done( (data) => {
+      console.log(data);
+      let eventID = data.event_id;
+      this.state.events[eventID] = newEvent;
+      this.setState({events: this.state.events})
+      $.ajax({
+        url: '/events',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done( (data) => {
+        data.forEach(el => {
+          this.state.events[el.event_id] = el;
+        })
+        this.setState({events: this.state.events})
+      })
+    })
+  },
+
   render() {
     const token = auth.getToken()
 
@@ -78,7 +105,7 @@ const Dashboard = React.createClass({
           <Nav me={this.state.me} />
         </header>
 
-          <div><CommEvents me={this.state.me} events={this.state.events} addCommEvent={this.addCommEvent}/></div>
+          <div><CommEvents me={this.state.me} events={this.state.events} addMyEvent={this.addMyEvent} addCommEvent={this.addCommEvent}/></div>
 
         <div><Footer /></div>
       </div>
