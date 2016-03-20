@@ -1,6 +1,5 @@
 'use strict'
 const React           = require('react');
-const ReactDOM        = require('react-dom');
 
 // react routing and links
 const ReactRouter     = require('react-router');
@@ -50,18 +49,18 @@ const Dashboard = React.createClass({
     })
   },
 
-  addCommEvent: function(newEvent) {
+  addCommEvent: function(event_id) {
     // ajax post and set state go here
     let addEvent = (data) => {
       let newID = data.event_id;
       // add new task to state
-      this.state.events[newID] = newEvent;
+      this.state.events[newID] = event_id;
       this.setState({ events: this.state.events });
     }
     $.ajax({
       url: '/events',
       method: 'POST',
-      data: newEvent,
+      data: event_id,
       beforeSend: function( xhr ) {
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
       }
@@ -69,10 +68,9 @@ const Dashboard = React.createClass({
 
   },
 
-  addMyEvent(newEvent) {
-    console.log(newEvent);
+  addMyEvent(event_id) {
     $.ajax({
-      url:'/events/' + newEvent,
+      url:`/events/${event_id}`,
       method: 'POST',
       beforeSend: function( xhr ) {
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
@@ -80,7 +78,33 @@ const Dashboard = React.createClass({
     }).done( (data) => {
       console.log(data);
       let eventID = data.event_id;
-      this.state.events[eventID] = newEvent;
+      this.state.events[eventID] = event_id;
+      this.setState({events: this.state.events})
+      $.ajax({
+        url: '/events',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done( (data) => {
+        data.forEach(el => {
+          this.state.events[el.event_id] = el;
+        })
+        this.setState({events: this.state.events})
+      })
+    })
+  },
+
+  deleteMyEvent(event_id) {
+    $.ajax({
+      url:`/events/${event_id}`,
+      method: 'DELETE',
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+      }
+    }).done( (data) => {
+      console.log(data);
+      let eventID = data.event_id;
+      this.state.events[eventID] = event_id;
       this.setState({events: this.state.events})
       $.ajax({
         url: '/events',
@@ -105,7 +129,7 @@ const Dashboard = React.createClass({
           <Nav me={this.state.me} />
         </header>
 
-          <div><CommEvents me={this.state.me} events={this.state.events} addMyEvent={this.addMyEvent} addCommEvent={this.addCommEvent}/></div>
+          <div><CommEvents me={this.state.me} events={this.state.events} addMyEvent={this.addMyEvent} deleteMyEvent={this.deleteMyEvent} addCommEvent={this.addCommEvent}/></div>
 
         <div><Footer /></div>
       </div>
