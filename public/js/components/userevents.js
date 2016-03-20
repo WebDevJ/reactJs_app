@@ -23,8 +23,7 @@ const UserEvents = React.createClass({
 
     return (
       <div>
-
-        <div><Events events={this.props.events}/></div>
+        <h1>My Events</h1>
         <div><PastEvents events={this.props.events}/></div>
       </div>
     )
