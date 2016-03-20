@@ -13,10 +13,8 @@ const $               = require('jquery');
 
 // routes to helpers go here
 const auth     = require('../helpers/auth');
-const Nav      = require('./nav');
 const Events   = require('./events');
 const PastEvents = require('./pastevents');
-const Footer   = require('./footer');
 
 
 const UserEvents = React.createClass({
@@ -26,15 +24,8 @@ const UserEvents = React.createClass({
     return (
       <div>
 
-        <div><Nav /></div>
-
-
-        <div><Events /></div>
-
-        <div><PastEvents /></div>
-
-        <div><Footer /></div>
-
+        <div><Events events={this.props.events}/></div>
+        <div><PastEvents events={this.props.events}/></div>
       </div>
     )
   }

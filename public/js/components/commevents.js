@@ -13,48 +13,74 @@ const $               = require('jquery');
 
 // routes to helpers go here
 const auth     = require('../helpers/auth');
-const Nav      = require('./nav');
-const Events   = require('./events');
+
+
+const Events    = require('./events');
 const Search   = require('./search');
-const Footer   = require('./footer');
 
 
 const CommEvents = React.createClass({
-  getInitialState() {
-    return {
-      me: ''
-    }
-  },
 
-  componentDidMount(){
-    $.ajax({
-      url: 'users/me',
-      beforeSend: function( xhr ) {
-        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-      }
-    }).done((data) => {
-      this.setState({me: [data.user_id, data.first]})
-    })
-  },
+    addMyEvent(newEvent) {
+      $.ajax({
+        url:'/events/' + this.state.events.event_id,
+        method: 'POST',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done( (data) => {
+        let eventID = data.event_id;
+        this.state.events[eventID] = newEvent;
+        this.setState({events: this.state.events})
+      })
+    },
+
+    addMyEvent(newEvent) {
+      $.ajax({
+        url:'/events/' + this.props.me[0],
+        method: 'POST',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done( (data) => {
+        let eventID = data.event_id;
+        this.state.events[eventID] = newEvent;
+        this.setState({events: this.state.events})
+      })
+    },
+
+    deleteEvent(removeEvent) {
+      $.ajax({
+        url:'/events/' + this.props.me[0],
+        method: 'DELETE',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done( (data) => {
+        let eventID = data.event_id;
+        this.state.events[eventID] = removeEvent;
+        this.setState({events: this.state.events})
+      })
+    },
+
+    showCommEvents(key) {
+      return (
+        <SingleEvent key={key} index={key} details={this.props.events[key]} addMyEvent={this.addMyEvent} deleteEvent={this.deleteEvent} />
+      )
+    },
 
   render() {
     const token = auth.getToken()
 
     return (
       <div className="dashboard">
-        <header>
-          <div className=""><p>{this.state.me[1]}</p></div>
-          <div><Nav /></div>
-        </header>
+
         <div className="content">
           <h1>Community Events</h1>
         </div>
 
-          <div><Events me={this.state.me}/></div>
-
-        <div className="searchresults"></div>
-        <div><Footer /></div>
-
+        <div><Events events={this.props.events}/></div>
+        <div><Search /></div>
       </div>
     )
   }
