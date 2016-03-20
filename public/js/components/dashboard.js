@@ -50,16 +50,33 @@ const Dashboard = React.createClass({
     })
   },
 
+  addCommEvent: function(newEvent) {
+    // ajax post and set state go here
+    let addEvent = (data) => {
+      let newID = data.event_id;
+      // add new task to state
+      this.state.events[newID] = newEvent;
+      this.setState({ events: this.state.events });
+    }
+    $.ajax({
+      url: '/events',
+      method: 'POST',
+      data: newEvent,
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+      }
+    }).done(addEvent);
+
+  },
+
   render() {
     const token = auth.getToken()
 
     return (
       <div>
 
-        <div className="content">
-          <div><CommEvents me={this.state.me} events={this.state.events}/></div>
+          <div><CommEvents me={this.state.me} events={this.state.events} addCommEvent={this.addCommEvent}/></div>
 
-          </div>
         <div><Footer /></div>
       </div>
     )
