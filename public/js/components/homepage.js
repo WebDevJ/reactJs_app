@@ -14,6 +14,7 @@ const $               = require('jquery');
 // routes to helpers go here
 const auth       = require('../helpers/auth');
 const Register   = require('./register');
+const Footer   = require('./footer');
 
 const HomePage = React.createClass({
   render() {
@@ -25,20 +26,23 @@ const HomePage = React.createClass({
             <h1>Meet My NYC</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et   dolore  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo  consequat.</p>
             <Register />
-            <Link to="/dashboard">Already have an account? Sign in here.</Link>
+            <p><Link to="/dashboard">Already have an account? Sign in here.</Link></p>
             </div>
           </div>
         </div>
 
-        <div>
-          <div className="hp-col"><h2>Some text describing our awesome app. This rocks. You should use this cause it is literally the best thing. EVER.</h2></div>
-          <div className="hp-col"><img src="../images/hp-col-img.png" /></div>
+        <div className="hp-content-area">
+          <div>
+            <div className="hp-col"><h2>Some text describing our awesome app. This rocks. You should use this cause it is literally the best thing. EVER.</h2></div>
+            <div className="hp-col"><img src="../images/hp-col-img.png" /></div>
+            </div>
+
+            <div>
+            <div className="hp-col"><img src="../images/lego.png" /></div>
+            <div className="hp-col"><h2>Some text describing our awesome app. This rocks. You should use this cause it is literally the best thing. EVER.</h2></div>
+          </div>
         </div>
 
-        <div>
-        <div className="hp-col"><img src="../images/hp-col-img-two.png" /></div>
-          <div className="hp-col"><h2>Some text describing our awesome app. This rocks. You should use this cause it is literally the best thing. EVER.</h2></div>
-        </div>
       </div>
     )
   }

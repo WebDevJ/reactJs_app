@@ -47,10 +47,10 @@ const Search = React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="search-content">
       <form className="search" ref="searchForm" onSubmit={this.handleSubmit}>
         <input ref="text" type="text" size="50" placeholder="enter a topic to search for"/>
-        <select ref="category">
+        <select className="select-cat" ref="category">
            <option value="">select a category</option>
            <option value="34">Tech</option>
            <option value="1">Art and Culture</option>
