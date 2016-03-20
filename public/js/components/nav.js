@@ -19,12 +19,12 @@ const Nav = React.createClass({
     return(
       <nav>
         <ul>
+          <li>Welcome: {this.props.me[1]}</li>
           <li><Link to="/dashboard">Community Events</Link></li>
           <li><Link to="/userevents">My Events</Link></li>
           <li><Link to="/logout">Log out</Link></li>
         </ul>
       </nav>
-
     )
   }
 })

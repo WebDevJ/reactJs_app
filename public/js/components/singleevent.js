@@ -28,7 +28,7 @@ const SingleEvent = React.createClass({
     event.preventDefault();
     this.props.deleteEvent(this.props.index)
   },
-
+//add a hidden form field to grab event id; using the form to render hidden info, see the single search form
   render() {
     return (
       <div className="events">
@@ -38,7 +38,7 @@ const SingleEvent = React.createClass({
         <p>{this.props.details.city}</p>
         <p><a href="{this.props.details.added_by}">{this.props.details.event_url}</a></p>
         <p>{this.props.details.attendees}</p>
-        <p><button onClick={this.handleClick}>Add Event</button>  <button>Show More</button></p>
+        <p><button onClick={this.handleClick}>Add Event</button> </p>
         <p><DeleteButton /></p>
       </div>
     )

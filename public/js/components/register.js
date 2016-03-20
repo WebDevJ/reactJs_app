@@ -38,11 +38,11 @@ const Register = React.createClass({
   render : function() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label><input ref="first" placeholder="firstname" required /></label>
-        <label><input ref="last" placeholder="lastname" required /></label>
-        <label><input ref="city" placeholder="city" required /></label>
-        <label><input ref="email" placeholder="email" required type="email" /></label>
-        <label><input ref="pass" type="password" placeholder="password" required /></label><br />
+        <label><input size="50" ref="first" type="text" placeholder="firstname" required /></label>
+        <label><input size="50" ref="last" type="text" placeholder="lastname" required /></label>
+        <label><input size="50" ref="city" type="text" placeholder="city" required /></label>
+        <label><input size="50" ref="email" type="email" placeholder="email" required /></label>
+        <label><input size="50" ref="pass" type="password" placeholder="password" required /></label><br />
         <button type="submit">signup</button>
       </form>
     )

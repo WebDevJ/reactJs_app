@@ -54,16 +54,17 @@ const Dashboard = React.createClass({
     const token = auth.getToken()
 
     return (
-      <div className="dashboard">
+      <div>
         <header>
-          <div className=""><p>{this.state.me[1]}</p></div>
-          <div><Nav /></div>
+          <div className="logo"><h2>Meet My NYC</h2></div>
+          <Nav me={this.state.me} />
         </header>
 
+        <div className="content">
           <div><CommEvents me={this.state.me} events={this.state.events}/></div>
 
+          </div>
         <div><Footer /></div>
-
       </div>
     )
   }

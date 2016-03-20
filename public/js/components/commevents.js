@@ -35,9 +35,10 @@ const CommEvents = React.createClass({
       })
     },
 
+
     addMyEvent(newEvent) {
       $.ajax({
-        url:'/events/' + this.props.me[0],
+        url:'/events/' + this.state.events.event_id,
         method: 'POST',
         beforeSend: function( xhr ) {
           xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
@@ -48,6 +49,21 @@ const CommEvents = React.createClass({
         this.setState({events: this.state.events})
       })
     },
+
+    //
+    // addMyEvent(newEvent) {
+    //   $.ajax({
+    //     url:'/events/' + this.props.me[0],
+    //     method: 'POST',
+    //     beforeSend: function( xhr ) {
+    //       xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+    //     }
+    //   }).done( (data) => {
+    //     let eventID = data.event_id;
+    //     this.state.events[eventID] = newEvent;
+    //     this.setState({events: this.state.events})
+    //   })
+    // },
 
     deleteEvent(removeEvent) {
       $.ajax({
@@ -73,9 +89,9 @@ const CommEvents = React.createClass({
     const token = auth.getToken()
 
     return (
-      <div className="dashboard">
+      <div>
 
-        <div className="content">
+        <div>
           <h1>Community Events</h1>
         </div>
 

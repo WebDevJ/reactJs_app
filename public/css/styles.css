@@ -1,5 +1,6 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
+  background-color: #f3f3f3;
 }
 
 h1, h2, h3 {
@@ -16,10 +17,11 @@ a {
   padding: 0;
 }
 
-.content {
-  width: 65em;
-  margin: 0 auto;
-  padding-top: 2em;
+.hp-background {
+  background-image: url(../images/hp-img.png);
+  background-size: cover;
+  background-position: center;
+  height: 45em;
 }
 
 .hp-content {
@@ -28,8 +30,57 @@ a {
   text-align: center;
 }
 
-nav {
+.hp-content a, h1, p {
+  color: #ffffff;
+}
+
+.hp-content h1 {
+  font-size: 2.5em;
+}
+
+.hp-col {
+  width: 50%;
   float: left;
+}
+
+.hp-col h2 {
+  padding: 3em;
+}
+
+.hp-col img {
+  width: 100%;
+  object-fit: cover;
+}
+
+header {
+  position: relative;
+  width: 100%;
+  height: 5em;
+  background-color: #555555;
+  color: #ffffff;
+}
+
+header a {
+  color: #ffffff;
+}
+
+.logo {
+  float: left;
+  padding-left: 1em;
+}
+
+.logo h2 {
+  margin: 1em;
+}
+
+nav {
+  float: right;
+  padding: 1em;
+}
+
+nav ul {
+  padding: 0;
+  margin: 1em;
 }
 
 nav li {
@@ -37,6 +88,16 @@ nav li {
   list-style-type: none;
   padding-left: 1em;
 }
+
+.content {
+  width: 65em;
+  margin: 0 auto;
+  padding-top: 2em;
+}
+
+/*.content h1 {
+  color: #333333;
+}*/
 
 .events {
   width: 40%;
@@ -49,6 +110,7 @@ nav li {
 
 .events > p {
   margin: .25em;
+  color: #333333;
 }
 
 .event-list {
@@ -60,4 +122,27 @@ nav li {
   width: 100%;
   clear:both;
   margin-top: 1em;
+}
+
+@media only screen and (max-width : 30em) {
+  .content, .hp-content {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .hp-content p {
+    padding: 0 3em;
+  }
+
+  .hp-col {
+    width: 100%;
+    float: none;
+  }
+
+  .events {
+    float: none;
+    width: 80%;
+    margin: 1em 0;
+  }
 }
