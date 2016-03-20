@@ -17,14 +17,18 @@ const auth            = require('../helpers/auth');
 const Nav = React.createClass({
   render() {
     return(
-      <nav>
-        <ul>
-          <li><Link to="/communityevents">Community Events</Link></li>
-          <li><Link to="/userevents">My Events</Link></li>
-          <li><Link to="/logout">Log out</Link></li>
-        </ul>
-      </nav>
+      <div>
+        <div className="logo"><h2>Meet My NYC</h2></div>
 
+        <nav>
+          <ul>
+            <li>Welcome: {this.props.me[1]}</li>
+            <li><Link to="/dashboard">Community Events</Link></li>
+            <li><Link to="/userevents">My Events</Link></li>
+            <li><Link to="/logout">Log out</Link></li>
+          </ul>
+        </nav>
+      </div>
     )
   }
 })

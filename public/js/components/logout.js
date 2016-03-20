@@ -21,7 +21,7 @@ const Logout = React.createClass({
     return (
       <div>
         <p>You have been logged out</p>
-        <p><Link to="/communityevents">Sign in</Link></p>
+        <p><Link to="/login">Sign in</Link></p>
       </div>
     )
   }

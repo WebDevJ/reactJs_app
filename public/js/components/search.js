@@ -36,12 +36,13 @@ const Search = React.createClass({
   },
   displayResults(currentResults, currentSearch) {
     return currentResults.map(el=>
-        <SingleResult key={el.id} index={el.id} resultdata={el} searchParam={currentSearch} onAddSubmit={this.handleAddSubmit} />
+      <SingleResult key={el.id} index={el.id} resultdata={el} searchParam={currentSearch} onAddSubmit={this.handleAddSubmit} />
     )
   },
 
   handleAddSubmit(newEvent){
-    console.log(newEvent)
+    // add the new event to the community event state
+    this.props.addCommEvent(newEvent);
   },
 
   render() {

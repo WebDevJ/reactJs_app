@@ -14,7 +14,8 @@ const SingleResult = React.createClass({
       lat: this.refs.lat.value,
       city: this.refs.city.value,
       state: this.refs.state.value,
-      country: this.refs.country.value
+      country: this.refs.country.value,
+      event_url: this.refs.event_url.value
     };
     this.props.onAddSubmit(newEvent);
   },
@@ -23,10 +24,12 @@ const SingleResult = React.createClass({
     let address = '';
     let lon = '';
     let lat = '';
+    let city = '';
     if (this.props.resultdata.venue) {
       address = this.props.resultdata.venue.address_1;
       lon = this.props.resultdata.venue.lon;
       lat = this.props.resultdata.venue.lat;
+      city = this.props.searchParam.city;
     }
 
     // format the serial date into date format
@@ -34,15 +37,14 @@ const SingleResult = React.createClass({
     // time to be presented in the display
     const formatted = moment(time).format('dddd, MMMM Do YYYY, h:mm:ss A');
     // time to be inserted into the db
-    const dbTime = moment(1458154800000).format();
+    const dbTime = moment(time).format();
 
     return (
       <div className="events">
         <h3>{this.props.resultdata.name}</h3>
         <p>{formatted}</p>
-        <p>{this.props.searchParam.category}</p>
         <p>{address}</p>
-        <p>{this.props.searchParam.city}</p>
+        <p>{city}</p>
         <a href={this.props.resultdata.event_url}>Check it out on Meetup!</a>
         {/* form with hidden values to insert new record into the db */}
         <form className="add-event" ref="addForm" onSubmit={this.handleAdd}>
@@ -55,6 +57,7 @@ const SingleResult = React.createClass({
           <input type="hidden" ref="city" value={this.props.searchParam.city}/>
           <input type="hidden" ref="state" value={this.props.searchParam.state}/>
           <input type="hidden" ref="country" value={this.props.searchParam.country}/>
+          <input type="hidden" ref="event_url" value={this.props.resultdata.event_url}/>
           <button ref="addbtn">Add Me!</button>
         </form>
       </div>
