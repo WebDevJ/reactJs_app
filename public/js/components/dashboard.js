@@ -74,6 +74,9 @@ const Dashboard = React.createClass({
 
     return (
       <div>
+        <header>
+          <Nav me={this.state.me} />
+        </header>
 
           <div><CommEvents me={this.state.me} events={this.state.events} addCommEvent={this.addCommEvent}/></div>
 
