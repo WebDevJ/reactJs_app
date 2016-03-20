@@ -111,7 +111,16 @@ function addUserEvent(req, res, next) {
 
 // add an event to the community list of events
 function addCommEvent(req, res, next) {
-  // placeholder
+  db.one(`INSERT INTO events (added_by, event_name, cat_meetup_id, event_time, address, lon, lat, city, state, country)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
+    [req.user.user_id, req.body.added_by, req.body.event_name, req.body.cat_meetup_id, req.body.event_time, req.body.address, req.body.lon, req.body.lat, req.body.city, req.body.state, req.body.country])
+    .then(function(data) {
+      res.rows = data;
+      next();
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 }
 
 

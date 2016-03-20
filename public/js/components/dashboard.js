@@ -50,6 +50,29 @@ const Dashboard = React.createClass({
     })
   },
 
+  addCommEvent: function(newEvent) {
+    // ajax post and set state go here
+    let event = newEvent;
+    console.log(this.props.me[0]);
+    newEvent.user_id = this.props.me[0];
+    console.log(newEvent);
+
+    let addEvent = (data) => {
+      let newID = data.event_id;
+      // add new task to state
+      this.state.events[newID] = newEvent;
+      this.setState({ events: this.state.events });
+    }
+    $.ajax({
+      url: '/events',
+      method: 'POST',
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+      }
+    }).done(addEvent);
+
+  },
+
   render() {
     const token = auth.getToken()
 
@@ -60,7 +83,7 @@ const Dashboard = React.createClass({
           <div><Nav /></div>
         </header>
 
-          <div><CommEvents me={this.state.me} events={this.state.events}/></div>
+          <div><CommEvents me={this.state.me} events={this.state.events} addCommEvent={this.addCommEvent}/></div>
 
         <div><Footer /></div>
 

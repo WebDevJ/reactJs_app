@@ -21,6 +21,13 @@ const Search   = require('./search');
 
 const CommEvents = React.createClass({
 
+    addCommEvent: function(newEvent) {
+      // add the new event to the community event state
+      console.log(newEvent);
+
+      },
+
+
     addMyEvent(newEvent) {
       $.ajax({
         url:'/events/' + this.state.events.event_id,
@@ -80,7 +87,7 @@ const CommEvents = React.createClass({
         </div>
 
         <div><Events events={this.props.events}/></div>
-        <div><Search /></div>
+        <div><Search addCommEvent={this.addCommEvent}/></div>
       </div>
     )
   }

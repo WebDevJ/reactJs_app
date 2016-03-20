@@ -49,7 +49,7 @@ events.route('/')
     res.send(res.rows)
   })
   // add an event to the community event list
-  .post((req, res) => {
+  .post(expressJWT({secret: secret}), db.addCommEvent, (req, res) => {
     res.send(res.rows)
   })
 
