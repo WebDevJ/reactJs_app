@@ -18,9 +18,15 @@ const SingleEvent    = require('./singleevent');
 
 const Events = React.createClass({
 
+  handleAdd(index) {
+    // console.log(index);
+    this.props.addMyEvent(index);
+
+  },
+
   showCommEvents(key) {
     return (
-      <SingleEvent key={key} index={key} details={this.props.events[key]} addMyEvent={this.addMyEvent} deleteEvent={this.deleteEvent} />
+      <SingleEvent key={key} index={key} details={this.props.events[key]} handleAdd={this.handleAdd} addMyEvent={this.props.addMyEvent} deleteEvent={this.deleteEvent} />
     )
   },
 
