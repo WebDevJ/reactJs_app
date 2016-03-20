@@ -1,7 +1,16 @@
 'use strict'
-const React = require('react');
+const React          = require('react');
 
-const auth = require('../helpers/auth');
+const auth           = require('../helpers/auth');
+const Login          = require('./login');
+
+const ReactRouter    = require('react-router');
+const Router         = ReactRouter.Router;
+const Redirect       = ReactRouter.Redirect;
+const browserHistory = ReactRouter.browserHistory;
+const Route          = ReactRouter.Route;
+const Link           = ReactRouter.Link;
+
 
 const Logout = React.createClass({
   componentDidMount() {
@@ -9,7 +18,12 @@ const Logout = React.createClass({
   },
 
   render() {
-    return <p>You are now logged out</p>
+    return (
+      <div>
+        <p>You have been logged out</p>
+        <p><Link to="/login">Sign in</Link></p>
+      </div>
+    )
   }
 })
 

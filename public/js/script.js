@@ -5,6 +5,7 @@ const ReactDOM       = require('react-dom');
 // react routing and links
 const ReactRouter    = require('react-router');
 const Router         = ReactRouter.Router;
+const Redirect       = ReactRouter.Redirect;
 const browserHistory = ReactRouter.browserHistory;
 const Route          = ReactRouter.Route;
 const Link           = ReactRouter.Link;
@@ -17,14 +18,15 @@ const auth           = require('./helpers/auth');
 const Login          = require('./components/login');
 const Logout         = require('./components/logout');
 const HomePage       = require('./components/homepage');
-const CommEvents     = require('./components/commevents');
-const UserEvents     = require('./components/userevents');
+const Dashboard      = require('./components/dashboard');
+const UserEvents      = require('./components/userevents');
 const Footer         = require('./components/footer');
 
 const App = React.createClass({
   getInitialState() {
     return {
-      loggedIn: auth.loggedIn()
+      loggedIn: auth.loggedIn(),
+      events: {}
     }
   },
 
@@ -70,7 +72,7 @@ ReactDOM.render((
     <Route path="/" component={App}>
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
-      <Route path="communityevents" component={CommEvents} onEnter={requireAuth} />
+      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
       <Route path="userevents" component={UserEvents} onEnter={requireAuth} />
     </Route>
     {/* 404 */}

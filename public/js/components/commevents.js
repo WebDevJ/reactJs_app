@@ -13,45 +13,48 @@ const $               = require('jquery');
 
 // routes to helpers go here
 const auth     = require('../helpers/auth');
-const Nav      = require('./nav');
-const Events   = require('./events');
+
+
+const Events    = require('./events');
 const Search   = require('./search');
-const Footer   = require('./footer');
 
 
 const CommEvents = React.createClass({
-  getInitialState() {
-    return {
-      me: ''
-    }
-  },
 
-    componentDidMount(){
+    addCommEvent: function(newEvent) {
+      // add the new event to the community event state
+      console.log(newEvent);
+
+      },
+
+
+    deleteEvent(removeEvent) {
       $.ajax({
-        url: 'users/me',
+        url:'/events/' + this.props.me[0],
+        method: 'DELETE',
         beforeSend: function( xhr ) {
           xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
         }
-      }).done((data) => {
-        this.setState({me: data.email})
+      }).done( (data) => {
+        let eventID = data.event_id;
+        this.state.events[eventID] = removeEvent;
+        this.setState({events: this.state.events})
       })
     },
+
 
   render() {
     const token = auth.getToken()
 
     return (
       <div>
-      <div><Nav /></div>
-        <div>
-          <h1>Dashboard</h1>
-          <p>You made it!</p>
-          <p>{this.state.me}</p>
-        </div>
-        <div><Events /></div>
-        <div><Search /></div>
-        <div><Footer /></div>
 
+        <div>
+          <h1>Community Events</h1>
+        </div>
+
+        <div><Events events={this.props.events} addMyEvent={this.props.addMyEvent}/></div>
+        <div><Search addCommEvent={this.props.addCommEvent}/></div>
       </div>
     )
   }

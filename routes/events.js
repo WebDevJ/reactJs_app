@@ -9,10 +9,25 @@ const bodyParser = require('body-parser');
 const expressJWT = require('express-jwt');
 const jwt        = require('jsonwebtoken');
 
+const api_key = process.env.API_KEY;
+
 // get all events for the logged in user
 events.get('/me', expressJWT({secret: secret}), db.showUserEvents, (req, res) => {
   res.send(res.rows)
 })
+
+events.route('/search/') ///events/search/qs
+  .get((req, res) => {
+    // set the query object on the search route with the API_KEY
+    const queryObj = req.query;
+    queryObj.key = api_key;
+
+    // pull request to get the JSON results from meetup
+    request({url:'https://api.meetup.com/2/open_events', qs:queryObj, json:true},
+      function(err, request, body) {
+        res.send(body.results)
+    });
+  })
 
 events.route('/:event_id')
   // show one event
@@ -34,16 +49,11 @@ events.route('/')
     res.send(res.rows)
   })
   // add an event to the community event list
-  .post((req, res) => {
+  .post(expressJWT({secret: secret}), db.addCommEvent, (req, res) => {
+    console.log(res.rows);
     res.send(res.rows)
   })
 
-events.route('/search/') ///events/search/:term/:catid/:city/:state/:country
-  .get((req, res) => {
-    request({url:'', qs:{t: req.params.t}, json:true},
-      function(err, apires, body) {
-        res.send(body)
-    });
-  })
+
 
 module.exports = events;

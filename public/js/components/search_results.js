@@ -17,7 +17,7 @@ const auth       = require('../helpers/auth');
 const SearchResults = React.createClass({
   render(){
     return (
-      <div>Test Search Results</div>
+      <div>{this.props.results}</div>
     )
   }
 })
