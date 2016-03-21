@@ -47,19 +47,10 @@ const SingleEvent = React.createClass({
         <p><a href="{this.props.details.added_by}">{this.props.details.event_url}</a></p>
         <p>{this.props.details.attendees}</p>
         <p>{actionButton}</p>
-        {/*<p><button onClick={this.handleClick}>Add Event</button> </p>
-        <p><button onClick={this.handleDeleteClick}>Remove Event</button></p>*/}
       </div>
     )
   }
 })
 
-const DeleteButton = React.createClass({
-  render() {
-    return (
-      <button onClick={this.handleDeleteClick}>Remove Event</button>
-    )
-  }
-})
 
 module.exports = SingleEvent;
