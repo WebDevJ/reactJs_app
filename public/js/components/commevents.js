@@ -28,19 +28,19 @@ const CommEvents = React.createClass({
       },
 
 
-    deleteEvent(removeEvent) {
-      $.ajax({
-        url:'/events/' + this.props.me[0],
-        method: 'DELETE',
-        beforeSend: function( xhr ) {
-          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-        }
-      }).done( (data) => {
-        let eventID = data.event_id;
-        this.state.events[eventID] = removeEvent;
-        this.setState({events: this.state.events})
-      })
-    },
+    // deleteEvent(removeEvent) {
+    //   $.ajax({
+    //     url:'/events/' + this.props.me[0],
+    //     method: 'DELETE',
+    //     beforeSend: function( xhr ) {
+    //       xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+    //     }
+    //   }).done( (data) => {
+    //     let eventID = data.event_id;
+    //     this.state.events[eventID] = removeEvent;
+    //     this.setState({events: this.state.events})
+    //   })
+    // },
 
 
   render() {
@@ -53,7 +53,7 @@ const CommEvents = React.createClass({
           <h1>Community Events</h1>
         </div>
 
-        <div><Events events={this.props.events} addMyEvent={this.props.addMyEvent}/></div>
+        <div><Events events={this.props.events} addMyEvent={this.props.addMyEvent} deleteMyEvent={this.props.deleteMyEvent}/></div>
         <div><Search addCommEvent={this.props.addCommEvent}/></div>
       </div>
     )
