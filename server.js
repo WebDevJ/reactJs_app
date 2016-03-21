@@ -21,6 +21,10 @@ app.set('view engine', 'ejs')
 app.use('/users', require(path.join(__dirname, '/routes/users')));
 app.use('/events', require(path.join(__dirname, '/routes/events')));
 
+app.get('/',  (req, res) => {
+  res.render('index')
+})
+
 app.get('*',  (req, res) => {
   res.render('index')
 })
