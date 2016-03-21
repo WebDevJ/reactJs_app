@@ -18,6 +18,7 @@ const Nav = React.createClass({
   render() {
     return(
       <div>
+      <header>
         <div className="logo"><h2>Meet My NYC</h2></div>
 
         <nav>
@@ -28,6 +29,7 @@ const Nav = React.createClass({
             <li><Link to="/logout">Log out</Link></li>
           </ul>
         </nav>
+        </header>
       </div>
     )
   }

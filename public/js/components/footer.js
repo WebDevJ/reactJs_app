@@ -17,9 +17,11 @@ const auth       = require('../helpers/auth');
 const Footer = React.createClass({
   render() {
     return (
-      <div>
-        <p>Test Footer</p>
-      </div>
+      <footer>
+
+        <p>&copy; 2016 DiamondDogs Inc. </p>
+
+      </footer>
     )
   }
 })

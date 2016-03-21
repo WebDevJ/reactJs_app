@@ -12,7 +12,7 @@ const db = pgp(cn);
 // render all events where the date is after today,
 // show users who have added it to their lists, and show the person it was added by
 function showCommEvents(req, res, next) {
-  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees, array_agg(u.user_id) as userIDs
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.first) as attendees, array_agg(u.user_id) as userIDs
     FROM events as e
       INNER JOIN categories as c
       ON c.cat_meetup_id = e.cat_meetup_id
@@ -35,7 +35,7 @@ function showCommEvents(req, res, next) {
 
 // show one event, with users attached to it
 function showOneEvent(req, res, next) {
-  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees, array_agg(u.user_id) as userIDs
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.first) as attendees, array_agg(u.user_id) as userIDs
     FROM events as e
       INNER JOIN categories as c
       ON c.cat_meetup_id = e.cat_meetup_id
@@ -59,7 +59,7 @@ function showOneEvent(req, res, next) {
 // show user list of events that have been added by the user or that they are attending
 function showUserEvents(req, res, next) {
   console.log(req);
-  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.email) as attendees, array_agg(u.user_id) as userIDs
+  db.any(`SELECT e.*, c.cat_name, users.first, users.last, array_agg(u.first) as attendees, array_agg(u.user_id) as userIDs
     FROM events as e
       INNER JOIN categories as c
       ON c.cat_meetup_id = e.cat_meetup_id
@@ -71,7 +71,8 @@ function showUserEvents(req, res, next) {
       ON e.added_by = users.user_id
     GROUP BY e.event_id, c.cat_name, users.first, users.last
     HAVING e.added_by = $1 OR
-      (SELECT $1 = ANY (array_agg(u.user_id)::int[]));`, [req.user.user_id])
+      (SELECT $1 = ANY (array_agg(u.user_id)::int[]))
+    ORDER BY e.event_id;`, [req.user.user_id])
   .then(function(data) {
     res.rows = data;
     next();

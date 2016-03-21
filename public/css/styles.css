@@ -3,12 +3,17 @@ body {
   background-color: #f3f3f3;
 }
 
-h1, h2, h3 {
+h1, h2, h3, p {
+  font-weight: normal;
   letter-spacing: .0125em;
 }
 
 a {
   text-decoration: none;
+}
+
+p {
+  font-size: 1.25em;
 }
 
 #container {
@@ -21,11 +26,11 @@ a {
   background-image: url(../images/hp-img.png);
   background-size: cover;
   background-position: center;
-  height: 45em;
+  height: 50em;
 }
 
 .hp-content {
-  width: 40em;
+  width: 45em;
   margin: 0 auto;
   text-align: center;
 }
@@ -35,29 +40,67 @@ a {
 }
 
 .hp-content h1 {
-  font-size: 2.5em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  letter-spacing: .05em;
+  font-size: 3em;
+}
+
+.hp-content-area {
+  width: 68em;
+  margin: 0 auto;
 }
 
 .hp-col {
   width: 50%;
   float: left;
+  margin-top: -.5em;
 }
 
 .hp-col h2 {
-  padding: 3em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-size: 1.75em;
+  color: #222327;
+  margin: 2.875em;
+  vertical-align: middle;
+}
+
+.red {
+  background-color: #a34453;
+}
+
+
+h2.red-text {
+  color: #451721;
+}
+
+.blue-text {
+  color: #333f49
+}
+
+.green {
+  background-color: #3e8d3c;
+}
+
+h2.green-text {
+  color: #132103;
 }
 
 .hp-col img {
   width: 100%;
   object-fit: cover;
+  padding: 0;
+  margin: 0;
 }
 
 header {
   position: relative;
   width: 100%;
   height: 5em;
-  background-color: #555555;
   color: #ffffff;
+  background-color: #333f49;
+  border-bottom: 1px solid #222327;
 }
 
 header a {
@@ -65,6 +108,7 @@ header a {
 }
 
 .logo {
+  font-family: 'Montserrat', sans-serif;
   float: left;
   padding-left: 1em;
 }
@@ -89,10 +133,20 @@ nav li {
   padding-left: 1em;
 }
 
+.dashboard-bg {
+  background-image: url(../images/dashboard-bg.png);
+  background-size: cover;
+  background-position: center;
+  height: 20em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid black;
+}
+
 .content {
   width: 65em;
   margin: 0 auto;
   padding-top: 2em;
+  clear: both;
 }
 
 /*.content h1 {
@@ -113,9 +167,48 @@ nav li {
   color: #333333;
 }
 
+.events > h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5em;
+  line-height: 1.25em;
+  background-color: #a34453;
+  color: white;
+  padding: .5em;
+  margin: 0;
+}
+
 .event-list {
   list-style-type: none;
   padding: 0;
+}
+
+.attendees {
+  border-top: 1px solid #333f49;
+}
+
+.select-cat {
+  margin: 0 .75em;
+}
+
+.search-events {
+  clear: both;
+  width: 100%;
+  border-top: 1px solid #333f49;
+}
+
+.search-events h2 {
+  color: #333f49;
+  text-align: center;
+}
+
+.search-content {
+  width: 65em;
+  margin: 0 auto;
+  clear: both;
+}
+
+.search {
+  text-align: center;
 }
 
 .searchresults {
@@ -124,11 +217,35 @@ nav li {
   margin-top: 1em;
 }
 
+footer {
+  border-top: 1px solid black;
+  position: relative;
+  width: 100%;
+  height: 8em;
+  bottom: -8em;
+  left: 0;
+  /*margin-bottom: -18em;*/
+  background-color: #333f49;
+  border-top: 1px solid #222327;
+  clear: both;
+}
+
+footer p {
+  padding: 1em;
+  font-size: .9875em;
+  letter-spacing: .05em;
+  color: #627e96;
+}
+
 @media only screen and (max-width : 30em) {
-  .content, .hp-content {
+  .content, .hp-content, .hp-content-area  {
     width: 100%;
     text-align: center;
     margin: 0 auto;
+  }
+
+  .hp-background  {
+    height: 100%;
   }
 
   .hp-content p {
@@ -140,9 +257,23 @@ nav li {
     float: none;
   }
 
+  .hp-col h2 {
+    font-size: 1.75em;
+    padding: 1.5em;
+    margin: 0;
+  }
+
+
   .events {
     float: none;
     width: 80%;
     margin: 1em 0;
   }
+
+  footer {
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+  }
+
 }

@@ -47,10 +47,12 @@ const Search = React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="search-events">
+      <h2>Add New Meetups to the Community</h2>
+      <div className="search-content">
       <form className="search" ref="searchForm" onSubmit={this.handleSubmit}>
         <input ref="text" type="text" size="50" placeholder="enter a topic to search for"/>
-        <select ref="category">
+        <select className="select-cat" ref="category">
            <option value="">select a category</option>
            <option value="34">Tech</option>
            <option value="1">Art and Culture</option>
@@ -66,6 +68,7 @@ const Search = React.createClass({
           {/*<SearchResults />*/}
           {this.displayResults(this.state.results, this.state.searchTerms)}
         </section>
+      </div>
       </div>
     )
   }
