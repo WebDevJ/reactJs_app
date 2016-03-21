@@ -48,13 +48,13 @@ const CommEvents = React.createClass({
 
     return (
       <div>
-
-        <div>
-          <h1>Community Events</h1>
+        <div className="content">
+          <div><Events events={this.props.events} addMyEvent={this.props.addMyEvent} deleteMyEvent={this.props.deleteMyEvent}/></div>
         </div>
 
-        <div><Events events={this.props.events} addMyEvent={this.props.addMyEvent} deleteMyEvent={this.props.deleteMyEvent}/></div>
-        <div><Search addCommEvent={this.props.addCommEvent}/></div>
+        <div>
+          <Search addCommEvent={this.props.addCommEvent}/>
+        </div>
       </div>
     )
   }

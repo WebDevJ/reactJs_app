@@ -125,13 +125,20 @@ const Dashboard = React.createClass({
 
     return (
       <div>
-        <header>
           <Nav me={this.state.me} />
-        </header>
+
+
+          <div className="dashboard-bg">
+            <div className="content">
+              <div className="hp-content">
+              <h1 id="register">Community Events</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+                </div>
+              </div>
+            </div>
 
           <div><CommEvents me={this.state.me} events={this.state.events} addMyEvent={this.addMyEvent} deleteMyEvent={this.deleteMyEvent} addCommEvent={this.addCommEvent}/></div>
 
-        <div><Footer /></div>
       </div>
     )
   }
