@@ -1,3 +1,4 @@
+(signUP Page)
 ## Enjoy The Best that NYC has to offer!
 
   With just one app you and your friends can join a community of like minded individuals that LOVE NYC events .
@@ -14,3 +15,8 @@
 
 ---
 Become a member and gain access to all the wonderful actives NYC has to offer.
+---
+
+(Community Events page)
+
+Welcome to your community Events page. It's simple to get started. Here you can search and add events.  If you are not sure were to start, feel free to look at the events already approved by other members below. 
