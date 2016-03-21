@@ -15,21 +15,29 @@ const $               = require('jquery');
 const auth            = require('../helpers/auth');
 
 const SingleEvent = React.createClass({
-  // getInitialState() {
-  //
-  // },
+  getInitialState() {
+    return {attending: false};
+  },
 
   handleClick(event) {
     event.preventDefault();
+    this.setState({attending: true})
     this.props.handleAdd(this.props.index)
   },
 
   handleDeleteClick(event) {
     event.preventDefault();
+    this.setState({attending: false})
     this.props.handleDelete(this.props.index)
   },
-//add a hidden form field to grab event id; using the form to render hidden info, see the single search form
   render() {
+    let actionButton;
+    console.log(this.state.attending);
+    if (!this.state.attending) {
+      actionButton = <button onClick={this.handleClick}>Add Event</button>
+    } else {
+      actionButton = <button onClick={this.handleDeleteClick}>Remove Event</button>;
+    }
     return (
       <div className="events">
         <h3>{this.props.details.event_name}</h3>
@@ -38,8 +46,9 @@ const SingleEvent = React.createClass({
         <p>{this.props.details.city}</p>
         <p><a href="{this.props.details.added_by}">{this.props.details.event_url}</a></p>
         <p>{this.props.details.attendees}</p>
-        <p><button onClick={this.handleClick}>Add Event</button> </p>
-        <p><button onClick={this.handleDeleteClick}>Remove Event</button></p>
+        <p>{actionButton}</p>
+        {/*<p><button onClick={this.handleClick}>Add Event</button> </p>
+        <p><button onClick={this.handleDeleteClick}>Remove Event</button></p>*/}
       </div>
     )
   }
