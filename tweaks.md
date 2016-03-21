@@ -5,7 +5,7 @@
 ---
 
 (text for 1st block)
-  We believe that there should be an app that takes care of all of this guess work for you. With this exclusive membership, to a Community of tried and tested events, you can't go wrong. The best part, is that you can see if your friends are going and if any one in the Community has already gone. No need plan for days ahead to impress visiting guess with great actives. DON'T Worry We Got You!
+  We believe that there should be an app that takes care of all of this guess work for you. With this exclusive membership, to a Community of tried and tested events, you can't go wrong. The best part, is that you can see if your friends are going and if any one in the Community has already gone. No need to research & plan for weeks ahead to impress visiting guess with great actives. DON'T Worry about it, We Got You!
 
   ---
 
