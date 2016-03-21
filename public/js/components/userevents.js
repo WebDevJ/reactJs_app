@@ -58,12 +58,14 @@ const UserEvents = React.createClass({
       <header>
         <Nav me={this.state.me} />
       </header>
-      <div>
+
+      <div className="content">
+        <div>
         <h1>My Events</h1>
         </div>
 
         <div><MyEvents myevents={this.state.myevents} /></div>
-        <div><Footer /></div>
+      </div>
       </div>
     )
   }
