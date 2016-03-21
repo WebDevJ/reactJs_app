@@ -71,7 +71,8 @@ function showUserEvents(req, res, next) {
       ON e.added_by = users.user_id
     GROUP BY e.event_id, c.cat_name, users.first, users.last
     HAVING e.added_by = $1 OR
-      (SELECT $1 = ANY (array_agg(u.user_id)::int[]));`, [req.user.user_id])
+      (SELECT $1 = ANY (array_agg(u.user_id)::int[]))
+    ORDER BY e.event_id;`, [req.user.user_id])
   .then(function(data) {
     res.rows = data;
     next();
