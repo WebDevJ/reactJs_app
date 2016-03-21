@@ -27,6 +27,32 @@ const UserEvents = React.createClass({
     }
   },
 
+  deleteMyEvent(event_id) {
+    $.ajax({
+      url:`/events/${event_id}`,
+      method: 'DELETE',
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+      }
+    }).done( (data) => {
+      console.log(data);
+      let eventID = data.event_id;
+      this.state.myevents[eventID] = event_id;
+      this.setState({myevents: this.state.myevents})
+      $.ajax({
+        url: '/events',
+        beforeSend: function( xhr ) {
+          xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
+        }
+      }).done( (data) => {
+        data.forEach(el => {
+          this.state.myevents[el.event_id] = el;
+        })
+        this.setState({myevents: this.state.myevents})
+      })
+    })
+  },
+
   componentDidMount(){
     $.ajax({
       url: 'users/me',
@@ -43,7 +69,6 @@ const UserEvents = React.createClass({
         xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
       }
     }).done( (data) => {
-      console.log(data);
       data.forEach(el => {
         this.state.myevents[el.event_id] = el;
       })
@@ -64,7 +89,7 @@ const UserEvents = React.createClass({
         <h1>My Events</h1>
         </div>
 
-        <div><MyEvents myevents={this.state.myevents} /></div>
+        <div><MyEvents myevents={this.state.myevents} deleteMyEvent={this.deleteMyEvent} /></div>
       </div>
       </div>
     )
@@ -73,10 +98,18 @@ const UserEvents = React.createClass({
 //
 
 const MyEvents = React.createClass({
+  handleAdd(index) {
+    // console.log(index);
+    this.props.addMyEvent(index);
+  },
+
+  handleDelete(index) {
+    this.props.deleteMyEvent(index);
+  },
 
   showMyEvents(key) {
     return (
-      <MySingleEvent key={key} index={key} details={this.props.myevents[key]}/>
+      <MySingleEvent key={key} index={key} details={this.props.myevents[key]} handleAdd={this.handleAdd} handleDelete={this.handleDelete}/>
     )
   },
 
@@ -93,16 +126,33 @@ const MyEvents = React.createClass({
 })
 
 const MySingleEvent = React.createClass({
-  //
-  // handleDeleteClick(event) {
-  //   event.preventDefault();
-  //   this.props.deleteEvent(this.props.index)
-  // },
+  getInitialState() {
+    return {attending: true};
+  },
+
+  handleClick(event) {
+    event.preventDefault();
+    this.setState({attending: true})
+    this.props.handleAdd(this.props.index)
+  },
+
+  handleDeleteClick(event) {
+    event.preventDefault();
+    this.setState({attending: false})
+    this.props.handleDelete(this.props.index)
+  },
   render() {
     // format the serial date into date format
     const time = this.props.details.event_time;
     // time to be presented in the display
     const formatted = moment(time).format('dddd, MMMM Do YYYY, h:mm:ss A');
+
+    let actionButton;
+    if (!this.state.attending) {
+      actionButton = <button onClick={this.handleClick}>Add Event</button>
+    } else {
+      actionButton = <button onClick={this.handleDeleteClick}>Remove Event</button>;
+    }
 
     return (
       <div className="events">
@@ -111,18 +161,10 @@ const MySingleEvent = React.createClass({
         <p>{this.props.details.address}</p>
         <p>{this.props.details.city}</p>
         <p><a href={this.props.details.event_url}>Check it out on Meetup!</a></p>
+        <p>Event Added By: {this.props.details.first}</p>
         <p>People Attending: {this.props.details.attendees}</p>
-        <p><button onClick={this.handleClick}>Add Event</button> </p>
-        <p><DeleteButton /></p>
+        <p>{actionButton}</p>
       </div>
-    )
-  }
-})
-
-const DeleteButton = React.createClass({
-  render() {
-    return (
-      <button onClick={this.handleDeleteClick}>Remove Event</button>
     )
   }
 })
