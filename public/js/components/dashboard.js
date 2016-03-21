@@ -132,7 +132,7 @@ const Dashboard = React.createClass({
             <div className="content">
               <div className="hp-content">
               <h1 id="register">Community Events</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+                <p>Welcome to your community Events page. It's simple to get started. Here you can search and add events. If you are not sure were to start, feel free to look at the events already approved by other members below.</p>
                 </div>
               </div>
             </div>

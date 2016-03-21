@@ -23,25 +23,8 @@ const CommEvents = React.createClass({
 
     addCommEvent: function(newEvent) {
       // add the new event to the community event state
-      console.log(newEvent);
 
       },
-
-
-    // deleteEvent(removeEvent) {
-    //   $.ajax({
-    //     url:'/events/' + this.props.me[0],
-    //     method: 'DELETE',
-    //     beforeSend: function( xhr ) {
-    //       xhr.setRequestHeader("Authorization", "Bearer " + auth.getToken() );
-    //     }
-    //   }).done( (data) => {
-    //     let eventID = data.event_id;
-    //     this.state.events[eventID] = removeEvent;
-    //     this.setState({events: this.state.events})
-    //   })
-    // },
-
 
   render() {
     const token = auth.getToken()

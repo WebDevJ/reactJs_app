@@ -84,11 +84,16 @@ const UserEvents = React.createClass({
         <Nav me={this.state.me} />
       </header>
 
-      <div className="content">
-        <div>
-        <h1>My Events</h1>
+      <div className="dashboard-bg">
+        <div className="content">
+          <div className="hp-content">
+            <h1 id="register">My Events</h1>
+            <p>Welcome to your Events page. Here you can see all of the events you signed up for.</p>
+          </div>
         </div>
+      </div>
 
+      <div className="content">
         <div><MyEvents myevents={this.state.myevents} deleteMyEvent={this.deleteMyEvent} /></div>
       </div>
       </div>
