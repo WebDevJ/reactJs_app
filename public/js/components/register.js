@@ -31,7 +31,7 @@ const Register = React.createClass({
 
       const { location } = this.props
 
-      this.context.router.replace('/login')
+      this.context.router.replace('/dashboard')
     })
   },
 
