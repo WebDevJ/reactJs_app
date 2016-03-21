@@ -1,6 +1,6 @@
 ## Enjoy The Best that NYC has to offer!
 
-  With just one app you and your friends can join a community of like minded individuals that LOVE NYC events.
+  With just one app you and your friends can join a community of like minded individuals that LOVE NYC events .
 
 ---
 
@@ -10,7 +10,7 @@
   ---
 
   (text for 2nd block)
-    HOW DO WE DO IT? We currant your experience by taping into the world of MeetUp.com. In this way we are able to set up a community of events that are fun, active & engaging.
+    HOW DO WE DO IT? We currant your experience by taping into the world of MeetUp.com. In this way we are able to set up a community of events that are fun, active & engaging. Most of all, if you don't have any one to go with. Would it not be great if you and your friends could remotely agree to go to an event? Or Share a Great MeetUp with the Community that no one has heard of? We Take care of all of this with My NYC Events.  
 
 ---
 Become a member and gain access to all the wonderful actives NYC has to offer.
