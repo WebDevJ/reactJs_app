@@ -15,8 +15,8 @@ const $               = require('jquery');
 const auth     = require('../helpers/auth');
 const Nav      = require('./nav');
 const Footer   = require('./footer');
-const Events   = require('./events');
-const PastEvents = require('./pastevents');
+
+const moment = require('moment');
 
 
 const UserEvents = React.createClass({
@@ -98,16 +98,20 @@ const MySingleEvent = React.createClass({
   //   event.preventDefault();
   //   this.props.deleteEvent(this.props.index)
   // },
-//add a hidden form field to grab event id; using the form to render hidden info, see the single search form
   render() {
+    // format the serial date into date format
+    const time = this.props.details.event_time;
+    // time to be presented in the display
+    const formatted = moment(time).format('dddd, MMMM Do YYYY, h:mm:ss A');
+
     return (
       <div className="events">
         <h3>{this.props.details.event_name}</h3>
-        <p>{this.props.details.event_time}</p>
+        <p>{formatted}</p>
         <p>{this.props.details.address}</p>
         <p>{this.props.details.city}</p>
-        <p><a href="{this.props.details.added_by}">{this.props.details.event_url}</a></p>
-        <p>{this.props.details.attendees}</p>
+        <p><a href={this.props.details.event_url}>Check it out on Meetup!</a></p>
+        <p>People Attending: {this.props.details.attendees}</p>
         <p><button onClick={this.handleClick}>Add Event</button> </p>
         <p><DeleteButton /></p>
       </div>
