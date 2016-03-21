@@ -26,7 +26,7 @@ const SingleEvent = React.createClass({
 
   handleDeleteClick(event) {
     event.preventDefault();
-    this.props.deleteEvent(this.props.index)
+    this.props.handleDelete(this.props.index)
   },
 //add a hidden form field to grab event id; using the form to render hidden info, see the single search form
   render() {
@@ -39,7 +39,7 @@ const SingleEvent = React.createClass({
         <p><a href="{this.props.details.added_by}">{this.props.details.event_url}</a></p>
         <p>{this.props.details.attendees}</p>
         <p><button onClick={this.handleClick}>Add Event</button> </p>
-        <p><DeleteButton /></p>
+        <p><button onClick={this.handleDeleteClick}>Remove Event</button></p>
       </div>
     )
   }
