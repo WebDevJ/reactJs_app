@@ -42,7 +42,7 @@ p {
 .hp-content h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
-  letter-spacing: .05em;
+  line-height: 1.25em;
   font-size: 3em;
 }
 
@@ -62,7 +62,7 @@ p {
   font-weight: normal;
   font-size: 1.75em;
   color: #222327;
-  margin: 2.875em;
+  margin: 2.025em;
   vertical-align: middle;
 }
 
