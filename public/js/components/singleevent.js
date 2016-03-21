@@ -44,8 +44,8 @@ const SingleEvent = React.createClass({
         <p>{this.props.details.event_time}</p>
         <p>{this.props.details.address}</p>
         <p>{this.props.details.city}</p>
-        <p><a href="{this.props.details.added_by}">{this.props.details.event_url}</a></p>
-        <p>{this.props.details.attendees}</p>
+        <p><a href={this.props.details.event_url}>Check it out on Meetup!</a></p>
+        <p className="attendees">{this.props.details.attendees}</p>
         <p>{actionButton}</p>
       </div>
     )

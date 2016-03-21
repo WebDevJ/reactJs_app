@@ -133,6 +133,15 @@ nav li {
   padding-left: 1em;
 }
 
+.dashboard-bg {
+  background-image: url(../images/dashboard-bg.png);
+  background-size: cover;
+  background-position: center;
+  height: 20em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid black;
+}
+
 .content {
   width: 65em;
   margin: 0 auto;
@@ -161,6 +170,11 @@ nav li {
 .events > h3 {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5em;
+  line-height: 1.25em;
+  background-color: #a34453;
+  color: white;
+  padding: .5em;
+  margin: 0;
 }
 
 .event-list {
@@ -168,14 +182,33 @@ nav li {
   padding: 0;
 }
 
+.attendees {
+  border-top: 1px solid #333f49;
+}
+
 .select-cat {
   margin: 0 .75em;
 }
 
+.search-events {
+  clear: both;
+  width: 100%;
+  border-top: 1px solid #333f49;
+}
+
+.search-events h2 {
+  color: #333f49;
+  text-align: center;
+}
+
 .search-content {
-  width: 60em;
+  width: 65em;
   margin: 0 auto;
   clear: both;
+}
+
+.search {
+  text-align: center;
 }
 
 .searchresults {
