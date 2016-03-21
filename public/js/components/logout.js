@@ -20,8 +20,14 @@ const Logout = React.createClass({
   render() {
     return (
       <div>
-        <p>You have been logged out</p>
-        <p><Link to="/login">Sign in</Link></p>
+      <div className="hp-background">
+        <div className="content">
+          <div className="hp-content">
+            <p>You have been logged out</p>
+            <p><Link to="/login">Login</Link></p>
+          </div>
+        </div>
+        </div>
       </div>
     )
   }
